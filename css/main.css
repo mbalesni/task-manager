@@ -1,9 +1,8 @@
-/****************************************
+/*************************************************
 *
-*                 COLORS
+*                    COLORS
 *
-****************************************
-*
+***************************************************
 *
 *
 *   beige: #d6d5b9
@@ -27,19 +26,19 @@
 *
 *
 *
-*
-****************************************
-*
-*             COLORS-END
-*
-****************************************/
+**************************************************/
 
-
+/*************************************************
+*
+*              GENERAL INTERFACE
+*
+**************************************************/
 
 
 
 body, h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, button, input, span {
   font-size: 16px;
+  font-family: "Helvetica Neue", sans-serif;
   padding: 0;
   margin: 0;
   color: #333;
@@ -71,7 +70,11 @@ body {
 
 
 
-/* Nav-box */
+/*************************************************
+*
+*                   NAV-BLOCK
+*
+**************************************************/
 
 .nav-header {
   background-color: #5b7a59;
@@ -99,6 +102,7 @@ padding: 5px 5px;
   height: 35px;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 .nameLetter {
   color: #fff;
@@ -108,7 +112,11 @@ padding: 5px 5px;
 
 
 
-/* List-block */
+/*************************************************
+*
+*                 LIST-BLOCK
+*
+**************************************************/
 
 .listHeader {
   display: flex;
@@ -172,7 +180,11 @@ padding: 5px 5px;
 
 
 
-/* List-box */
+/*************************************************
+*
+*                 LIST-BOX
+*
+**************************************************/
 
 .item:first-of-type {
 
@@ -280,11 +292,97 @@ i {
 }
 
 
-/* STATES */
+/*************************************************
+*
+*                 SIGN-UP MODAL
+*
+**************************************************/
+
+
+.overlay {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #668964;
+
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.sign-in-modal {
+  position: absolute;
+  width: 500px;
+  min-height: 320px;
+  padding: 30px;
+  background: #fff;
+  border: #eee;
+  border-radius: 10px;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 1000;=
+}
+.sign-in-form {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.sign-in-heading {
+  text-align: center;
+  font-size: 2em;
+}
+.sign-in-form .fields {
+  margin: 20px 0;
+  width: 100%;
+}
+.sign-in-form .group {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.sign-in-form .field-name {
+  font-size: 1.5em;
+  font-family: sans-serif;
+}
+.field {
+  line-height: 1;
+  font-size: 1.5em;
+}
+.sign-in-btn {
+  color: #fff;
+  font-size: 2em;
+  border: 0;
+  width: 90%;
+  height: 50px;
+  border-radius: 5px;
+  background: #668964;
+  outline: none;
+  transition: 0.2s ease-in-out;
+}
+.sign-in-btn:hover,
+.sign-in-btn:active {
+  background: #5b7a59;
+}
+
+
+/*************************************************
+*
+*                    STATES
+*
+**************************************************/
 
 .visible {
   visibility: visible !important;
   opacity: 1;
+}
+.invisible {
+  visibility: hidden !important;
+  opacity: 0;
 }
 .checked {
   text-decoration: line-through;

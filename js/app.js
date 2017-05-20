@@ -8,6 +8,31 @@ $(document).ready(function() {
 
     /*************************************************
     *
+    *                 SIGN-IN FORM
+    *
+    **************************************************/
+
+    $('.sign-in-modal').on('click', '.sign-in-btn', function() {
+      var login = $('.login').find('.field').val();
+      var password = $('.password').find('.field').val();
+      if (login == 'elina' && password == '12345') {
+        $(this).closest('.sign-in-modal').delay(1200).addClass('invisible');
+        $(this).closest('body').find('.overlay').delay(1200).addClass('invisible');
+
+      };
+    });
+
+    $('.password .field').keypress(function (e) {
+       var key = e.which;
+       if(key == 13) {
+          $('.sign-in-btn').trigger('click');
+          $(this).blur();
+        }
+     });
+
+
+    /*************************************************
+    *
     *                 LOCAL STORAGE
     *
     **************************************************/
@@ -20,7 +45,12 @@ $(document).ready(function() {
 
         $(document).on('click', function() {
             var list = $('.list').html();
+            //var signIn = $('.sign-in-modal').html();
+            //var overlay = $('.overlay').html();
             simpleStorage.set('tasks', $.trim(list));
+            //simpleStorage.set('signed', $.trim(signIn));
+            //simpleStorage.set('overlayed', $.trim(overlay));
+
         })
 
 
@@ -30,8 +60,14 @@ $(document).ready(function() {
         *                     LOAD
         *
         **************************************************/
-        var value = simpleStorage.get('tasks');
-        $('.list').html(value);
+        //var signIn = simpleStorage.get('signed');
+        //var overlay = simpleStorage.get('overlayed');
+        var tasks = simpleStorage.get('tasks');
+        //$('.sign-in-modal').html(signIn);
+        //$('.overlay').html(overlay);
+        $('.list').html(tasks);
+
+
 
 
     /*************************************************
@@ -115,11 +151,11 @@ $(document).ready(function() {
     $('.list').on('click', '.tick-box', function() {
       $(this).closest('.first-line').find('.item-title').toggleClass('checked');
       $(this).find('.glyphicon-ok').toggleClass('visible');
+      if ($(this).closest('.item').find('.item-title').hasClass('checked')) {
+        var snd = new Audio("sound/paper.mp3");
+        snd.play();
+      }
 
-      // SOUND EFFECT
-      //
-      // var snd = new Audio("sound/paper.mp3");
-      // snd.play();
     });
 
 
@@ -134,7 +170,10 @@ $(document).ready(function() {
         $(this).closest('.item').toggleClass('hovered');
         var oldTitle = $(this).closest('.first-line').find('.item-title').text();
         var inputField = $(this).closest('.first-line').find('#renameField');
-        inputField.addClass('extended');
+        var firstLineWidth = $(this).closest('.first-line').width();
+        var ctrlWidth = $(this).closest('.item-ctrl').width();
+
+        inputField.width(firstLineWidth - 2 * ctrlWidth);  //addClass('extended');
         inputField.val(oldTitle);
         inputField.focus();
 
