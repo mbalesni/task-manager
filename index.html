@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+
+    <div class="content">
+
+      <div class="nav-block">
+
+          <header class="nav-header">
+            <h1></h1>
+          </header>
+
+          <div class="user-toolbar">
+            <div class="nameIcon">
+              <h1 class="nameLetter">N</h1>
+            </div>
+            <h1 class="user-name">Nikita Balesny</h1>
+          </div>
+
+      </div>
+
+
+      <div class="list-block">
+
+          <header class="listHeader">
+            <h1>My To-Do List</h1>
+          </header>
+
+
+          <div class="newItemBlock">
+            <input type="text" id="newItem" placeholder="Add a task">
+            <span id="addItem">Add</span>
+          </div>
+
+
+          <div class="list-box">
+            <ol class="list list-unstyled">
+
+              <li class="item">
+                  <div class="first-line">
+
+                    <div class="item-content">
+                      <div class="tick-box">
+                        <i class="glyphicon glyphicon-ok"></i>
+                      </div>
+
+                      <div class="item-name">
+                        <span class="item-title">Call John</span>
+                        <input id="renameField" type="text">
+                      </div>
+                    </div>
+
+                    <div class="item-ctrl">
+                      <i class="glyphicon glyphicon-pencil"></i>
+                      <i class="glyphicon glyphicon-remove"></i>
+                    </div>
+
+                  </div>
+
+                  <div class="meta">
+                    <p id="date">Created on DATE</p>
+                  </div>
+
+              </li>
+
+              <li class="item">
+                  <div class="first-line">
+
+                    <div class="item-content">
+                      <div class="tick-box">
+                        <i class="glyphicon glyphicon-ok"></i>
+                      </div>
+
+                      <div class="item-name">
+                        <span class="item-title">Go to Kate</span>
+                        <input id="renameField" type="text">
+                      </div>
+                    </div>
+
+                    <div class="item-ctrl">
+                      <i class="glyphicon glyphicon-pencil"></i>
+                      <i class="glyphicon glyphicon-remove"></i>
+                    </div>
+
+                  </div>
+
+                  <div class="meta">
+                    <p id="date">Created on DATE</p>
+                  </div>
+
+              </li>
+
+
+              <li class="item">
+                  <div class="first-line">
+
+                    <div class="item-content">
+                      <div class="tick-box">
+                        <i class="glyphicon glyphicon-ok"></i>
+                      </div>
+
+                      <div class="item-name">
+                        <span class="item-title">Save the world</span>
+                        <input id="renameField" type="text">
+                      </div>
+                    </div>
+
+                    <div class="item-ctrl">
+                      <i class="glyphicon glyphicon-pencil"></i>
+                      <i class="glyphicon glyphicon-remove"></i>
+                    </div>
+
+                  </div>
+
+                  <div class="meta">
+                    <p id="date">Created on DATE</p>
+                  </div>
+
+              </li>
+
+
+            </ol>
+          </div>
+
+
+      </div>
+
+    </div>
+
+  </body>
+  <script src="js/jquery-3.2.0.js"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/simplestorage/0.2.1/simpleStorage.min.js"></script>
+  <script src="js/app.js"></script>
+</html>

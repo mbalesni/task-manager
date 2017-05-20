@@ -1,0 +1,295 @@
+/****************************************
+*
+*                 COLORS
+*
+****************************************
+*
+*
+*
+*   beige: #d6d5b9
+*
+*
+*   blue-for-icon: #6a91df
+*   blue: #4aaaa7
+*   light-blue: #7acdc7
+*   dark-blue: #34414f
+*
+*   light-gray: #f9f9f9
+*   gray: #eee
+*   darker-gray: #ddd
+*   dark-gray: #888
+*
+*   green: #668964
+*   dark-green: #5b7a59
+*
+*   reddish: #e26058
+*   red: #f44336
+*
+*
+*
+*
+****************************************
+*
+*             COLORS-END
+*
+****************************************/
+
+
+
+
+
+body, h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, button, input, span {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  color: #333;
+  font-weight: lighter;
+}
+/* Main Content */
+body {
+  height: 820px;
+}
+.list-block {
+  width: 90%;
+  float: right;
+  background-color: #d6d5b9;
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100%;
+  padding-bottom: 50px;
+}
+.content {
+  display: flex;
+  min-height: 100%;
+}
+.nav-block {
+  min-height: 100%;
+  width: 25%;
+  background-color: #eee;
+  display: block;
+}
+
+
+
+/* Nav-box */
+
+.nav-header {
+  background-color: #5b7a59;
+  height: 45px;
+
+}
+.user-toolbar {
+display: flex;
+align-items: center;
+padding: 5px 5px;
+
+}
+.user-toolbar .user-name {
+  font-size: 1.2em;
+  font-family: sans-serif;
+}
+.nameIcon {
+  display: flex;
+  font-weight: normal;
+  background-image: url("../images/blue-circle.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 5px;
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+}
+.nameLetter {
+  color: #fff;
+  font-weight: normal;
+
+}
+
+
+
+/* List-block */
+
+.listHeader {
+  display: flex;
+  width: 100%;
+  height: 45px;
+  background-color: #668964;
+
+}
+.listHeader h1 {
+  color: #fff;
+  font-size: 1.5em;
+  align-self: center;
+  padding: 5px 20px;
+
+}
+.newItemBlock {
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#newItem {
+  width: 82%;
+  font-size: 1.5em;
+  color: #fff;
+  border: none;
+  padding-left: 10px;
+  outline: none;
+  background-color: #668964;
+  opacity: 0.75;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+::placeholder {
+  color: #ddd;
+  font-weight: lighter;
+}
+
+
+#addItem {
+  font-size: 1.5em;
+  padding: 3px 0;
+  width: 15%;
+  text-align: center;
+  background-color: #eee;
+  transition: 0.2s;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+}
+#addItem:hover,
+#addItem:active {
+  background-color: #555;
+  cursor: pointer;
+  color: #fff;
+}
+.list-box {
+  min-height: 40%;
+}
+
+
+
+
+/* List-box */
+
+
+.item {
+  line-height: 1.5;
+  padding: 5px 0;
+  padding-left: 10px;
+  margin: 0 15px 2px;
+  font-size: 1.5em;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column nowrap;
+  border-radius: 5px;
+}
+li:hover,
+li:active {
+  background-color: #ddd;
+  cursor: pointer;
+}
+.first-line {
+  display: flex;
+  justify-content: space-between;
+}
+.item-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tick-box {
+  display: block;
+  background: #fff;
+  border: 1px solid #668964;
+  border-radius: 5px;
+  width: 25px;
+  height: 25px;
+  margin: 3px 7px 0px 3px;
+
+}
+.glyphicon-ok {
+  visibility: hidden;
+  font-size: 0.9em;
+  position: relative;
+  top: -4px;
+}
+.item-name {
+  display: flex;
+  position: relative;
+}
+.item-title {
+  line-height: 1.5;
+  font-size: 1.2em;
+  flex-shrink: 0;
+}
+#renameField {
+  outline: none;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  line-height: 1.5;
+  font-size: 1.2em;
+  background: #ddd;
+  border: none;
+  position: absolute;
+  z-index: 1000;
+}
+.meta {
+
+}
+#date {
+  font-size: 0.5em;
+  font-family: sans-serif;
+  padding-left: 35px;
+}
+i {
+  text-decoration: none !important;
+}
+
+.item-ctrl {
+  display: flex;
+  align-items: center;
+}
+.glyphicon-pencil {
+  font-size: 1em;
+  padding: 6px;
+  margin: 3px 5px;
+  border-radius: 3px;
+}
+.glyphicon-pencil:hover,
+.glyphicon-pencil:active {
+  background-color: #5b7a59;
+  color: #fff;
+}
+.glyphicon-remove {
+  font-size: 1.3em;
+  padding: 3px;
+  margin: 3px 5px;
+  border-radius: 3px;
+}
+.glyphicon-remove:hover,
+.glyphicon-remove:active {
+  background-color: #5b7a59;
+  color: #fff;
+}
+
+
+/* STATES */
+
+.visible {
+  visibility: visible !important;
+  opacity: 1;
+}
+.checked {
+  text-decoration: line-through;
+}
+.hovered {
+  background: #ddd;
+}
+.extended {
+  min-width: 600px;
+}
