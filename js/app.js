@@ -62,10 +62,10 @@ $(document).ready(function() {
         **************************************************/
         //var signIn = simpleStorage.get('signed');
         //var overlay = simpleStorage.get('overlayed');
-        var tasks = simpleStorage.get('tasks');
+        var items = simpleStorage.get('tasks');
         //$('.sign-in-modal').html(signIn);
         //$('.overlay').html(overlay);
-        $('.list').html(tasks);
+        //$('.list').html(items);
 
 
 
