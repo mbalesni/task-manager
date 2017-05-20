@@ -145,7 +145,7 @@ $(document).ready(function() {
 
        $('.list').on('keydown', '.item #renameField', function (e) {
            var key = e.which;
-           if(key == 13) {
+           if(key == 13 ) {
               var newTitle = $(this).val();
               if (newTitle != '') {
                 $(this).removeClass('visible');
@@ -159,7 +159,23 @@ $(document).ready(function() {
 
             }
 
-    });
+        });
+
+            $(document).on('click', function (e) {
+                   var newTitle = $('.list').find('.hovered').find('#renameField').val();
+                   console.log(newTitle);
+                   if (newTitle != '') {
+                     $('.hovered').find('#renameField').removeClass('visible');
+                     $('.hovered').find('#renameField').closest('.item').removeClass('hovered');
+                     $('.hovered').find('#renameField').closest('.first-line').find('.item-title').text(newTitle);
+                     $(document).trigger('click');
+                   } else {
+                     $('.hovered').find('#renameField').removeClass('visible');
+                     $('.hovered').find('#renameField').closest('.item').removeClass('hovered');
+                   };
+        
+
+         });
 
 
 
