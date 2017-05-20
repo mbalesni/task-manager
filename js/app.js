@@ -148,6 +148,7 @@ $(document).ready(function() {
            if(key == 13 ) {
               var newTitle = $(this).val();
               if (newTitle != '') {
+                $('.user-toolbar').trigger('hello');
                 $(this).removeClass('visible');
                 $(this).closest('.item').removeClass('hovered');
                 $(this).closest('.first-line').find('.item-title').text(newTitle);
@@ -155,27 +156,17 @@ $(document).ready(function() {
               } else {
                 $(this).removeClass('visible');
                 $(this).closest('.item').removeClass('hovered');
+
               }
 
             }
+        });
+
+        $('.user-toolbar').on('hello', function() {
+          console.log('govno');
 
         });
 
-            $(document).on('click', function (e) {
-                   var newTitle = $('.list').find('.hovered').find('#renameField').val();
-                   console.log(newTitle);
-                   if (newTitle != '') {
-                     $('.hovered').find('#renameField').removeClass('visible');
-                     $('.hovered').find('#renameField').closest('.item').removeClass('hovered');
-                     $('.hovered').find('#renameField').closest('.first-line').find('.item-title').text(newTitle);
-                     $(document).trigger('click');
-                   } else {
-                     $('.hovered').find('#renameField').removeClass('visible');
-                     $('.hovered').find('#renameField').closest('.item').removeClass('hovered');
-                   };
-        
-
-         });
 
 
 
