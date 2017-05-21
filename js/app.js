@@ -147,7 +147,7 @@ $(document).ready(function() {
         var name = simpleStorage.get('login');
         //$('.sign-in-modal').html(signIn);
         //$('.overlay').html(overlay);
-        $('.tasks-list').html(tasks);
+        //$('.tasks-list').html(tasks);
 
 
 
@@ -267,7 +267,7 @@ $(document).ready(function() {
             var oldWidth = $(this).width();
             function resizeInput() {
               if ($(this).width() < 600) {
-                $(this).attr('size', $(this).val().length);
+                $(this).attr('size', $(this).val().length)+5;
               } else {
                 $(this).width(599);
                 $(this).attr('size', $(this).val().length);
@@ -294,8 +294,10 @@ $(document).ready(function() {
 
     $('.tasks-list').on('click', '.glyphicon-remove', function() {
       $(this).closest('.task').fadeOut(400).remove();
-
+      var removeSnd = new Audio("sound/paper.mp3");
+      removeSnd.play();
     });
+
 
     /*************************************************
     *
