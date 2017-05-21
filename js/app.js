@@ -6,6 +6,27 @@ $(document).ready(function() {
 *
 **************************************************/
 
+
+    /*************************************************
+    *
+    *                 DYNAMIC DOM CHANGE
+    *
+    **************************************************/
+
+
+    function handleDynamicElementEvent(event) {
+     console.log(event.type, this.value)
+   }
+   // create and attach event to dynamic element
+   jQuery("index.html", {
+         on: {
+           change: handleDynamicElementEvent
+         }
+   })
+   .appendTo("body");
+
+
+
     /*************************************************
     *
     *                 SIGN-IN FORM
@@ -15,7 +36,7 @@ $(document).ready(function() {
     $('.sign-in-modal').on('click', '.sign-in-btn', function() {
       var login = $('.login').find('.field').val();
       var password = $('.password').find('.field').val();
-      if (login == 'elina' && password == '12345') {
+      if (login == '' && password == '') {
         $(this).closest('.sign-in-modal').delay(1200).addClass('invisible');
         $(this).closest('body').find('.overlay').delay(1200).addClass('invisible');
 
@@ -173,38 +194,51 @@ $(document).ready(function() {
         var firstLineWidth = $(this).closest('.first-line').width();
         var ctrlWidth = $(this).closest('.item-ctrl').width();
 
-        inputField.width(firstLineWidth - 2 * ctrlWidth);  //addClass('extended');
+        inputField.width(firstLineWidth - 2 * ctrlWidth);
         inputField.val(oldTitle);
         inputField.focus();
+        if(inputField.is(":focus")) {
+          console.log('yeah');
+        }
 
 
 
 
        });
 
-       $('.list').on('keydown', '.item #renameField', function (e) {
-           var key = e.which;
-           if(key == 13 ) {
-              var newTitle = $(this).val();
-              if (newTitle != '') {
-                $('.user-toolbar').trigger('hello');
-                $(this).removeClass('visible');
-                $(this).closest('.item').removeClass('hovered');
-                $(this).closest('.first-line').find('.item-title').text(newTitle);
-                $(document).trigger('click');
-              } else {
-                $(this).removeClass('visible');
-                $(this).closest('.item').removeClass('hovered');
+         $('.list').on('keydown', '.item #renameField', function (e) {
+             var key = e.which;
+             if(key == 13) {
+                var newTitle = $(this).val();
+                if (newTitle != '') {
+
+                  $(this).removeClass('visible');
+                  $(this).closest('.item').removeClass('hovered');
+                  $(this).closest('.first-line').find('.item-title').text(newTitle);
+                  $(document).trigger('click');
+                } else {
+                  $(this).removeClass('visible');
+                  $(this).closest('.item').removeClass('hovered');
+
+                };
 
               }
+          });
 
-            }
-        });
+          $("#renameField").blur(function() {
+            var newTitle = $(this).val();
+            if (newTitle != '') {
 
-        $('.user-toolbar').on('hello', function() {
-          console.log('govno');
+              $(this).removeClass('visible');
+              $(this).closest('.item').removeClass('hovered');
+              $(this).closest('.first-line').find('.item-title').text(newTitle);
+              $(document).trigger('click');
+            } else {
+              $(this).removeClass('visible');
+              $(this).closest('.item').removeClass('hovered');
 
-        });
+            };
+          });
 
 
 
