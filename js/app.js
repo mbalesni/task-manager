@@ -47,7 +47,7 @@ $(document).ready(function() {
           </div>
 
       </li>`;
-      $('.list-box').append(newItem);
+      $('.list').append(newItem);
       again = false;
     } while (again == true);
 
@@ -62,9 +62,13 @@ $(document).ready(function() {
       var login = $('.login').find('.field').val();
       var password = $('.password').find('.field').val();
       if (login == 'elina' && password == '12345') {
-        $(this).closest('.sign-in-modal').delay(1200).addClass('invisible');
-        $(this).closest('body').find('.overlay').delay(1200).addClass('invisible');
+        $(this).closest('.sign-in-modal').delay(1500).hide({queue:true, duration: 1});
+        $(this).closest('body').find('.overlay').delay(1500).hide({queue:true, duration: 1});
 
+      } else {
+        $('.alert').addClass('visible-alert');
+        $('.login').find('.field').val('');
+        $('.password').find('.field').val('');
       };
     });
 
@@ -76,6 +80,13 @@ $(document).ready(function() {
         }
      });
 
+     $('.login .field').keypress(function (e) {
+        var key = e.which;
+        if(key == 13) {
+           $('.sign-in-btn').trigger('click');
+           $(this).blur();
+         }
+      });
 
     /*************************************************
     *

@@ -23,6 +23,7 @@
 *
 *   reddish: #e26058
 *   red: #f44336
+*   stylish red: #f55753
 *
 *
 *
@@ -317,7 +318,7 @@ i {
   width: 500px;
   min-height: 320px;
   padding: 30px;
-  background: #fff;
+  background: #eee;
   border: #eee;
   border-radius: 10px;
   top: 20%;
@@ -338,7 +339,7 @@ i {
   font-size: 2em;
 }
 .sign-in-form .fields {
-  margin: 20px 0;
+  margin: 20px 0 10px 0;
   width: 100%;
 }
 .sign-in-form .group {
@@ -352,6 +353,10 @@ i {
 .field {
   line-height: 1;
   font-size: 1.5em;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  padding-left: 5px;
 }
 .sign-in-btn {
   color: #fff;
@@ -367,6 +372,24 @@ i {
 .sign-in-btn:hover,
 .sign-in-btn:active {
   background: #5b7a59;
+}
+.alert {
+    visibility: hidden;
+    border: none; /* Remove borders */
+    color: white; /* Add a text color */
+    width: 100%;
+    height: 0; /* Add a pointer cursor on mouse-over */
+    margin: 0;
+    padding: 0;
+}
+.danger {
+  background: #fddddd;
+}
+.wrongPass {
+  color: #923432;
+  padding: 5px 10px;
+  font-size: 1.2em;
+  line-height: 1.5;
 }
 
 
@@ -392,4 +415,9 @@ i {
 }
 .extended {
   min-width: 600px;
+}
+.visible-alert {
+  min-height: 30px;
+  visibility: visible !important;
+  margin: 10px 0;
 }
