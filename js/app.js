@@ -147,7 +147,7 @@ $(document).ready(function() {
         var name = simpleStorage.get('login');
         //$('.sign-in-modal').html(signIn);
         //$('.overlay').html(overlay);
-        //$('.tasks-list').html(tasks);
+        $('.tasks-list').html(tasks);
 
 
 
