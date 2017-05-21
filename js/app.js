@@ -30,7 +30,7 @@ $(document).ready(function() {
               </div>
 
               <div class="item-name">
-                <span class="item-title">Welcome, Kate!</span>
+                <span class="item-title">Welcome, Elina!</span>
                 <input id="renameField" type="text">
               </div>
             </div>
@@ -101,7 +101,7 @@ $(document).ready(function() {
 
         /*************************************************
         *
-        *                     SAVE
+        *                     AUTOSAVE
         *
         **************************************************/
 
@@ -125,9 +125,10 @@ $(document).ready(function() {
         //var signIn = simpleStorage.get('signed');
         //var overlay = simpleStorage.get('overlayed');
         var items = simpleStorage.get('tasks');
+        var name = simpleStorage.get('login');
         //$('.sign-in-modal').html(signIn);
         //$('.overlay').html(overlay);
-        $('.list').html(items);
+        //$('.list').html(items);
 
 
 
@@ -214,8 +215,8 @@ $(document).ready(function() {
       $(this).closest('.first-line').find('.item-title').toggleClass('checked');
       $(this).find('.glyphicon-ok').toggleClass('visible');
       if ($(this).closest('.item').find('.item-title').hasClass('checked')) {
-        var snd = new Audio("sound/paper.mp3");
-        snd.play();
+        var crossSnd = new Audio("sound/crossed2.wav");
+        crossSnd.play();
       }
 
     });
@@ -292,7 +293,7 @@ $(document).ready(function() {
     **************************************************/
 
     $('.list').on('click', '.glyphicon-remove', function() {
-      $(this).closest('.item').remove();
+      $(this).closest('.item').fadeOut(400);
 
     });
 
