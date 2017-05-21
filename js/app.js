@@ -1,3 +1,22 @@
+/*************************************************
+*
+*              KEY NUMBERS
+*
+*
+*     enter – 13
+*     backspace – 8
+*     command – 91
+*     shift – 16
+*     option – 18
+*     control – 17
+*
+*
+*
+*
+**************************************************/
+
+
+
 $(document).ready(function() {
 
 /*************************************************
@@ -29,14 +48,12 @@ $(document).ready(function() {
                 <i class="glyphicon glyphicon-ok"></i>
               </div>
 
-              <div class="task-name">
-                <span class="item-title">Welcome, Elina!</span>
-                <input id="renameField" type="text">
+              <div class="task-title">
+                <input id="task-title" type="text" value="Welcome to MyToDo!">
               </div>
             </div>
 
             <div class="task-ctrl">
-              <i class="glyphicon glyphicon-pencil"></i>
               <i class="glyphicon glyphicon-remove"></i>
             </div>
 
@@ -47,7 +64,7 @@ $(document).ready(function() {
           </div>
 
       </li>`;
-      $('.tasks-ist').append(newTask);
+      $('.tasks-list').append(newTask);
       again = false;
     } while (again == true);
 
@@ -142,11 +159,6 @@ $(document).ready(function() {
     **************************************************/
 
 
-    /*
-
-    */
-
-
     $('#addTask').on('click', function() {
       var input = $(this).closest('.newTaskBlock').find('input'); //gets the input element
       var d = new Date();
@@ -170,14 +182,12 @@ $(document).ready(function() {
                 <i class="glyphicon glyphicon-ok"></i>
               </div>
 
-              <div class="task-name">
-                <span class="item-title">${input.val()}</span>
-                <input id="renameField" type="text">
+              <div class="task-title">
+                <input id="task-title" type="text" value="${input.val()}">
               </div>
             </div>
 
             <div class="task-ctrl">
-              <i class="glyphicon glyphicon-pencil"></i>
               <i class="glyphicon glyphicon-remove"></i>
             </div>
 
@@ -214,9 +224,9 @@ $(document).ready(function() {
 
     // check task when button is clicked
     $('.tasks-list').on('click', '.tick-box', function() {
-      $(this).closest('.first-line').find('.item-title').toggleClass('checked');
+      $(this).closest('.first-line').find('#task-title').toggleClass('checked');
       $(this).find('.glyphicon-ok').toggleClass('visible');
-      if ($(this).closest('.task').find('.item-title').hasClass('checked')) {
+      if ($(this).closest('.task').find('#task-title').hasClass('checked')) {
         var crossSnd = new Audio("sound/crossed2.wav");
         crossSnd.play();
       }
@@ -230,55 +240,44 @@ $(document).ready(function() {
     *
     **************************************************/
 
-        $('.tasks-list').on('click', '.glyphicon-pencil', function() {
-          $(this).closest('.first-line').find('#renameField').toggleClass('visible');
-          $(this).closest('.task').toggleClass('hovered');
-          var oldTitle = $(this).closest('.first-line').find('.item-title').text();
-          var inputField = $(this).closest('.first-line').find('#renameField');
-          var firstLineWidth = $(this).closest('.first-line').width();
-          var ctrlWidth = $(this).closest('.task-ctrl').width();
-
-          inputField.width(firstLineWidth - 2 * ctrlWidth);
-          inputField.val(oldTitle);
-          inputField.focus();
-
-
-
-
-         });
-
-         $('.tasks-list').on('keydown', '.task #renameField', function (e) {
+         $('.tasks-list').on('keydown', '#task-title', function (e) {
              var key = e.which;
              if(key == 13) {
                 var newTitle = $(this).val();
                 if (newTitle != '') {
-                  $(this).removeClass('visible');
-                  $(this).closest('.task').removeClass('hovered');
-                  $(this).closest('.first-line').find('.item-title').text(newTitle);
+                  $(this).blur();
                   $(document).trigger('click');
                 } else {
-                  $(this).removeClass('visible');
-                  $(this).closest('.task').removeClass('hovered');
+                  alert("Enter a name");
 
                 };
 
               }
           });
 
-          // close renaming field on blur
-          $(".tasks-list").on('blur', '#renameField', function() {
-            var newTitle = $(this).val();
-            if (newTitle != '') {
-              $(this).removeClass('visible');
-              $(this).closest('.task').removeClass('hovered');
-              $(this).closest('.first-line').find('.item-title').text(newTitle);
-              $(document).trigger('click');
-            } else {
-              $(this).removeClass('visible');
-              $(this).closest('.task').removeClass('hovered');
+          /*************************************************
+          *
+          *                 DYNAMIC RESIZING
+          *
+          **************************************************/
 
+          // make a fix for when it exceeds 600px
+
+          $('.tasks-list').on('keydown', '#task-title', function() {
+            var oldWidth = $(this).width();
+            function resizeInput() {
+              if ($(this).width() < 600) {
+                $(this).attr('size', $(this).val().length);
+              } else {
+                $(this).width(599);
+                $(this).attr('size', $(this).val().length);
+              };
             };
+            $(this).keyup(resizeInput).each(resizeInput);
+
           });
+
+
 
 
 
@@ -294,7 +293,7 @@ $(document).ready(function() {
     **************************************************/
 
     $('.tasks-list').on('click', '.glyphicon-remove', function() {
-      $(this).closest('.task').fadeOut(400);
+      $(this).closest('.task').fadeOut(400).remove();
 
     });
 
