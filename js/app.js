@@ -30,7 +30,7 @@ $(document).ready(function() {
               </div>
 
               <div class="item-name">
-                <span class="item-title">Welcome, Elina!</span>
+                <span class="item-title">Welcome, Kate!</span>
                 <input id="renameField" type="text">
               </div>
             </div>
@@ -64,7 +64,8 @@ $(document).ready(function() {
       if (
           login == 'elina' && password == '12345' ||
           login == 'nikita' && password == '123' ||
-          login == 'vlad' && password == '1234'
+          login == 'vlad' && password == '1234' ||
+          login == 'kate' && password == '12345'
         ) {
         $(this).closest('.sign-in-modal').delay(800).hide({queue:true, duration: 1});
         $(this).closest('body').find('.overlay').delay(800).hide({queue:true, duration: 1});
