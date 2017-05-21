@@ -378,7 +378,7 @@ i {
 
 .visible {
   visibility: visible !important;
-  opacity: 1;
+  opacity: 1 !important;
 }
 .invisible {
   visibility: hidden !important;

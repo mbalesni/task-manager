@@ -6,27 +6,6 @@ $(document).ready(function() {
 *
 **************************************************/
 
-
-    /*************************************************
-    *
-    *                 DYNAMIC DOM CHANGE
-    *
-    **************************************************/
-
-
-    function handleDynamicElementEvent(event) {
-     console.log(event.type, this.value)
-   }
-   // create and attach event to dynamic element
-   jQuery("index.html", {
-         on: {
-           change: handleDynamicElementEvent
-         }
-   })
-   .appendTo("body");
-
-
-
     /*************************************************
     *
     *                 SIGN-IN FORM
@@ -36,7 +15,7 @@ $(document).ready(function() {
     $('.sign-in-modal').on('click', '.sign-in-btn', function() {
       var login = $('.login').find('.field').val();
       var password = $('.password').find('.field').val();
-      if (login == '' && password == '') {
+      if (login == 'elina' && password == '12345') {
         $(this).closest('.sign-in-modal').delay(1200).addClass('invisible');
         $(this).closest('body').find('.overlay').delay(1200).addClass('invisible');
 
@@ -86,7 +65,7 @@ $(document).ready(function() {
         var items = simpleStorage.get('tasks');
         //$('.sign-in-modal').html(signIn);
         //$('.overlay').html(overlay);
-        //$('.list').html(items);
+        $('.list').html(items);
 
 
 
@@ -197,9 +176,6 @@ $(document).ready(function() {
         inputField.width(firstLineWidth - 2 * ctrlWidth);
         inputField.val(oldTitle);
         inputField.focus();
-        if(inputField.is(":focus")) {
-          console.log('yeah');
-        }
 
 
 
@@ -211,7 +187,7 @@ $(document).ready(function() {
              if(key == 13) {
                 var newTitle = $(this).val();
                 if (newTitle != '') {
-
+                  $(this).trigger('close');
                   $(this).removeClass('visible');
                   $(this).closest('.item').removeClass('hovered');
                   $(this).closest('.first-line').find('.item-title').text(newTitle);
@@ -225,10 +201,10 @@ $(document).ready(function() {
               }
           });
 
-          $("#renameField").blur(function() {
+
+          $(".list").on('blur', '#renameField', function() {
             var newTitle = $(this).val();
             if (newTitle != '') {
-
               $(this).removeClass('visible');
               $(this).closest('.item').removeClass('hovered');
               $(this).closest('.first-line').find('.item-title').text(newTitle);
@@ -239,7 +215,6 @@ $(document).ready(function() {
 
             };
           });
-
 
 
 
