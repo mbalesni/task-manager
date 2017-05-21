@@ -381,6 +381,7 @@ i {
     height: 0; /* Add a pointer cursor on mouse-over */
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 .danger {
   background: #fddddd;
