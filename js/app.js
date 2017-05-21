@@ -5,6 +5,52 @@ $(document).ready(function() {
 *              ON DOCUMENT READY
 *
 **************************************************/
+    var again;
+
+    do {
+      var d = new Date();
+      if (d.getMinutes() <= 9) {
+        var minutes = "0" + d.getMinutes();
+      } else {
+        var minutes = d.getMinutes();
+      };
+      if (d.getHours() <= 9) {
+        var hours = "0" + d.getHours();
+      } else {
+        var hours = d.getHours();
+      };
+      var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      var time = monthArray[d.getMonth()] + " " + d.getDate() + " " + hours + ":" + minutes;
+      var newItem = `<li class="item">
+          <div class="first-line">
+
+            <div class="item-content">
+              <div class="tick-box">
+                <i class="glyphicon glyphicon-ok"></i>
+              </div>
+
+              <div class="item-name">
+                <span class="item-title">Welcome, Elina!</span>
+                <input id="renameField" type="text">
+              </div>
+            </div>
+
+            <div class="item-ctrl">
+              <i class="glyphicon glyphicon-pencil"></i>
+              <i class="glyphicon glyphicon-remove"></i>
+            </div>
+
+          </div>
+
+          <div class="meta">
+            <p id="date">Created on ${time}</p>
+          </div>
+
+      </li>`;
+      $('.list-box').append(newItem);
+      again = false;
+    } while (again == true);
+
 
     /*************************************************
     *
