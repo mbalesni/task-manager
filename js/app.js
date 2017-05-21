@@ -21,21 +21,21 @@ $(document).ready(function() {
       };
       var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var time = monthArray[d.getMonth()] + " " + d.getDate() + " " + hours + ":" + minutes;
-      var newItem = `<li class="item">
+      var newTask = `<li class="task">
           <div class="first-line">
 
-            <div class="item-content">
+            <div class="task-content">
               <div class="tick-box">
                 <i class="glyphicon glyphicon-ok"></i>
               </div>
 
-              <div class="item-name">
+              <div class="task-name">
                 <span class="item-title">Welcome, Elina!</span>
                 <input id="renameField" type="text">
               </div>
             </div>
 
-            <div class="item-ctrl">
+            <div class="task-ctrl">
               <i class="glyphicon glyphicon-pencil"></i>
               <i class="glyphicon glyphicon-remove"></i>
             </div>
@@ -47,7 +47,7 @@ $(document).ready(function() {
           </div>
 
       </li>`;
-      $('.list').append(newItem);
+      $('.tasks-ist').append(newTask);
       again = false;
     } while (again == true);
 
@@ -65,7 +65,9 @@ $(document).ready(function() {
           login == 'elina' && password == '12345' ||
           login == 'nikita' && password == '123' ||
           login == 'vlad' && password == '1234' ||
-          login == 'kate' && password == '12345'
+          login == 'kate' && password == '12345' ||
+          login == 'a' && password == '' ||
+          login == 'public' && password ==''
         ) {
         $(this).closest('.sign-in-modal').delay(800).hide({queue:true, duration: 1});
         $(this).closest('body').find('.overlay').delay(800).hide({queue:true, duration: 1});
@@ -106,10 +108,10 @@ $(document).ready(function() {
         **************************************************/
 
         $(document).on('click', function() {
-            var list = $('.list').html();
+            var tasksList = $('.tasks-list').html();
             //var signIn = $('.sign-in-modal').html();
             //var overlay = $('.overlay').html();
-            simpleStorage.set('tasks', $.trim(list));
+            simpleStorage.set('tasks', $.trim(tasksList));
             //simpleStorage.set('signed', $.trim(signIn));
             //simpleStorage.set('overlayed', $.trim(overlay));
 
@@ -124,18 +126,18 @@ $(document).ready(function() {
         **************************************************/
         //var signIn = simpleStorage.get('signed');
         //var overlay = simpleStorage.get('overlayed');
-        var items = simpleStorage.get('tasks');
+        var tasks = simpleStorage.get('tasks');
         var name = simpleStorage.get('login');
         //$('.sign-in-modal').html(signIn);
         //$('.overlay').html(overlay);
-        //$('.list').html(items);
+        $('.tasks-list').html(tasks);
 
 
 
 
     /*************************************************
     *
-    *                 ADD LIST ITEM
+    *                 ADD A TASK
     *
     **************************************************/
 
@@ -145,8 +147,8 @@ $(document).ready(function() {
     */
 
 
-    $('#addItem').on('click', function() {
-      var input = $(this).closest('.newItemBlock').find('input'); //gets the input element
+    $('#addTask').on('click', function() {
+      var input = $(this).closest('.newTaskBlock').find('input'); //gets the input element
       var d = new Date();
       if (d.getMinutes() <= 9) {
         var minutes = "0" + d.getMinutes();
@@ -160,21 +162,21 @@ $(document).ready(function() {
       };
       var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var time = monthArray[d.getMonth()] + " " + d.getDate() + " " + hours + ":" + minutes;
-      var item = `<li class="item">
+      var task = `<li class="task">
           <div class="first-line">
 
-            <div class="item-content">
+            <div class="task-content">
               <div class="tick-box">
                 <i class="glyphicon glyphicon-ok"></i>
               </div>
 
-              <div class="item-name">
+              <div class="task-name">
                 <span class="item-title">${input.val()}</span>
                 <input id="renameField" type="text">
               </div>
             </div>
 
-            <div class="item-ctrl">
+            <div class="task-ctrl">
               <i class="glyphicon glyphicon-pencil"></i>
               <i class="glyphicon glyphicon-remove"></i>
             </div>
@@ -188,33 +190,33 @@ $(document).ready(function() {
       </li>`;
 
       if (input.val() != '' ) {
-        $('.list').append(item);
+        $('.tasks-list').append(task);
         input.val('');
       } else {
         alert('Choose a name for your task!');
       }
     });
 
-    // click addItem button when enter is pressed
-    $('#newItem').keypress(function (e) {
+    // click addTask button when enter is pressed
+    $('#newTask').keypress(function (e) {
        var key = e.which;
        if(key == 13) {
-          $('#addItem').trigger('click');
+          $('#addTask').trigger('click');
           return false;
         }
      });
 
     /*************************************************
     *
-    *                 CHECK LIST ITEM
+    *                 CHECK TASK
     *
     **************************************************/
 
-    // check item when button is clicked
-    $('.list').on('click', '.tick-box', function() {
+    // check task when button is clicked
+    $('.tasks-list').on('click', '.tick-box', function() {
       $(this).closest('.first-line').find('.item-title').toggleClass('checked');
       $(this).find('.glyphicon-ok').toggleClass('visible');
-      if ($(this).closest('.item').find('.item-title').hasClass('checked')) {
+      if ($(this).closest('.task').find('.item-title').hasClass('checked')) {
         var crossSnd = new Audio("sound/crossed2.wav");
         crossSnd.play();
       }
@@ -224,57 +226,56 @@ $(document).ready(function() {
 
     /*************************************************
     *
-    *                 RENAME LIST ITEM
+    *                 RENAME TASK
     *
     **************************************************/
 
-      $('.list').on('click', '.glyphicon-pencil', function() {
-        $(this).closest('.first-line').find('#renameField').toggleClass('visible');
-        $(this).closest('.item').toggleClass('hovered');
-        var oldTitle = $(this).closest('.first-line').find('.item-title').text();
-        var inputField = $(this).closest('.first-line').find('#renameField');
-        var firstLineWidth = $(this).closest('.first-line').width();
-        var ctrlWidth = $(this).closest('.item-ctrl').width();
+        $('.tasks-list').on('click', '.glyphicon-pencil', function() {
+          $(this).closest('.first-line').find('#renameField').toggleClass('visible');
+          $(this).closest('.task').toggleClass('hovered');
+          var oldTitle = $(this).closest('.first-line').find('.item-title').text();
+          var inputField = $(this).closest('.first-line').find('#renameField');
+          var firstLineWidth = $(this).closest('.first-line').width();
+          var ctrlWidth = $(this).closest('.task-ctrl').width();
 
-        inputField.width(firstLineWidth - 2 * ctrlWidth);
-        inputField.val(oldTitle);
-        inputField.focus();
-
-
+          inputField.width(firstLineWidth - 2 * ctrlWidth);
+          inputField.val(oldTitle);
+          inputField.focus();
 
 
-       });
 
-         $('.list').on('keydown', '.item #renameField', function (e) {
+
+         });
+
+         $('.tasks-list').on('keydown', '.task #renameField', function (e) {
              var key = e.which;
              if(key == 13) {
                 var newTitle = $(this).val();
                 if (newTitle != '') {
-                  $(this).trigger('close');
                   $(this).removeClass('visible');
-                  $(this).closest('.item').removeClass('hovered');
+                  $(this).closest('.task').removeClass('hovered');
                   $(this).closest('.first-line').find('.item-title').text(newTitle);
                   $(document).trigger('click');
                 } else {
                   $(this).removeClass('visible');
-                  $(this).closest('.item').removeClass('hovered');
+                  $(this).closest('.task').removeClass('hovered');
 
                 };
 
               }
           });
 
-
-          $(".list").on('blur', '#renameField', function() {
+          // close renaming field on blur
+          $(".tasks-list").on('blur', '#renameField', function() {
             var newTitle = $(this).val();
             if (newTitle != '') {
               $(this).removeClass('visible');
-              $(this).closest('.item').removeClass('hovered');
+              $(this).closest('.task').removeClass('hovered');
               $(this).closest('.first-line').find('.item-title').text(newTitle);
               $(document).trigger('click');
             } else {
               $(this).removeClass('visible');
-              $(this).closest('.item').removeClass('hovered');
+              $(this).closest('.task').removeClass('hovered');
 
             };
           });
@@ -288,12 +289,12 @@ $(document).ready(function() {
 
     /*************************************************
     *
-    *                 REMOVE LIST ITEM
+    *                 REMOVE TASK
     *
     **************************************************/
 
-    $('.list').on('click', '.glyphicon-remove', function() {
-      $(this).closest('.item').fadeOut(400);
+    $('.tasks-list').on('click', '.glyphicon-remove', function() {
+      $(this).closest('.task').fadeOut(400);
 
     });
 
@@ -304,9 +305,9 @@ $(document).ready(function() {
     **************************************************/
 
 
-    $( ".list" ).sortable({
+    $( ".tasks-list" ).sortable({
       axis: "y",
-      containment: ".list-box",
+      containment: ".tasks-box",
       distance: 5
     });
 

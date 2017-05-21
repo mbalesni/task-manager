@@ -13,7 +13,9 @@
       <div class="nav-block">
 
           <header class="nav-header">
-            <img class="logo" src="images/logo.png">
+            <div class="logo-wrapper shadow">
+              <img class="logo" src="images/logo.png">
+            </div>
           </header>
 
           <div class="user-toolbar">
@@ -23,40 +25,48 @@
             <h1 class="user-name">Elina Pyatashova</h1>
           </div>
 
+          <div class="lists-block">
+
+          </div>
+
       </div>
 
 
-      <div class="list-block">
+      <div class="tasks-block">
 
           <header class="listHeader">
             <h1>My To-Do List</h1>
           </header>
 
 
-          <div class="newItemBlock">
-            <input type="text" id="newItem" placeholder="Add a task">
-            <span id="addItem">Add</span>
+          <div class="newTaskBlock">
+              <input type="text" id="newTask" placeholder="Add a task">
+              <span id="addTask">Add</span>
           </div>
 
 
-          <div class="list-box">
-            <ol class="list list-unstyled">
+          <div class="tasks-box">
+            <ol class="tasks-list list-unstyled">
 
-                <!-- <li class="item">
+
+
+
+
+                <!-- <li class="task">
                     <div class="first-line">
 
-                      <div class="item-content">
+                      <div class="task-content">
                         <div class="tick-box">
                           <i class="glyphicon glyphicon-ok"></i>
                         </div>
 
-                        <div class="item-name">
+                        <div class="task-name">
                           <span class="item-title">Welcome, Elina!</span>
                           <input id="renameField" type="text">
                         </div>
                       </div>
 
-                      <div class="item-ctrl">
+                      <div class="task-ctrl">
                         <i class="glyphicon glyphicon-pencil"></i>
                         <i class="glyphicon glyphicon-remove"></i>
                       </div>

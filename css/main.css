@@ -49,7 +49,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, button, input, span {
 body {
   height: 820px;
 }
-.list-block {
+.tasks-block {
   width: 90%;
   float: right;
   background-color: #d6d5b9;
@@ -85,12 +85,20 @@ body {
   align-items: center;
 
 }
+.logo-wrapper {
+  background-color: #668964;
+  padding: 4px 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 .logo {
-  height: 40px;
+  height: 45px;
+  padding-top: 2px;
 }
 .user-toolbar {
 display: flex;
 align-items: center;
+margin-top: 10px;
 padding: 5px 5px;
 
 }
@@ -121,7 +129,7 @@ padding: 5px 5px;
 
 /*************************************************
 *
-*                 LIST-BLOCK
+*                 TASKS-BLOCK
 *
 **************************************************/
 
@@ -139,13 +147,13 @@ padding: 5px 5px;
   padding: 5px 20px;
 
 }
-.newItemBlock {
+.newTaskBlock {
   margin: 20px 0;
   width: 100%;
   display: flex;
   justify-content: center;
 }
-#newItem {
+#newTask {
   width: 82%;
   font-size: 1.5em;
   color: #fff;
@@ -163,7 +171,7 @@ padding: 5px 5px;
 }
 
 
-#addItem {
+#addTask {
   font-size: 1.5em;
   padding: 3px 0;
   width: 15%;
@@ -174,13 +182,13 @@ padding: 5px 5px;
   border-bottom-right-radius: 5px;
 
 }
-#addItem:hover,
-#addItem:active {
+#addTask:hover,
+#addTask:active {
   background-color: #555;
   cursor: pointer;
   color: #fff;
 }
-.list-box {
+.tasks-box {
   min-height: 40%;
 }
 
@@ -189,18 +197,14 @@ padding: 5px 5px;
 
 /*************************************************
 *
-*                 LIST-BOX
+*                 TASKS-BOX
 *
 **************************************************/
 
-.list {
+.tasks-list {
   padding-top: 15px;
 }
-
-.item:first-of-type {
-
-}
-.item {
+.task {
   line-height: 1.5;
   padding: 5px 0;
   padding-left: 10px;
@@ -221,7 +225,7 @@ li:active {
   display: flex;
   justify-content: space-between;
 }
-.item-content {
+.task-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -242,7 +246,7 @@ li:active {
   position: relative;
   top: -4px;
 }
-.item-name {
+.task-name {
   display: flex;
   position: relative;
 }
@@ -275,7 +279,7 @@ i {
   text-decoration: none !important;
 }
 
-.item-ctrl {
+.task-ctrl {
   display: flex;
   align-items: center;
 }
@@ -435,4 +439,9 @@ i {
   min-height: 30px;
   visibility: visible !important;
   margin: 10px 0;
+}
+.shadow {
+  -moz-box-shadow: 0 2px 4px;
+  -webkit-box-shadow: 0 2px 4px;
+  box-shadow: 0 2px 4px;
 }
