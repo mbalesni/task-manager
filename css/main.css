@@ -80,7 +80,13 @@ body {
 .nav-header {
   background-color: #5b7a59;
   height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+}
+.logo {
+  height: 40px;
 }
 .user-toolbar {
 display: flex;

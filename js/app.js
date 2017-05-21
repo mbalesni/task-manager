@@ -61,9 +61,13 @@ $(document).ready(function() {
     $('.sign-in-modal').on('click', '.sign-in-btn', function() {
       var login = $('.login').find('.field').val();
       var password = $('.password').find('.field').val();
-      if (login == 'elina' && password == '12345') {
-        $(this).closest('.sign-in-modal').delay(1500).hide({queue:true, duration: 1});
-        $(this).closest('body').find('.overlay').delay(1500).hide({queue:true, duration: 1});
+      if (
+          login == 'elina' && password == '12345' ||
+          login == 'nikita' && password == '123' ||
+          login == 'vlad' && password == '1234'
+        ) {
+        $(this).closest('.sign-in-modal').delay(800).hide({queue:true, duration: 1});
+        $(this).closest('body').find('.overlay').delay(800).hide({queue:true, duration: 1});
 
       } else {
         $('.alert').addClass('visible-alert');
