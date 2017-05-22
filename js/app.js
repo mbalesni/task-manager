@@ -14,9 +14,6 @@
 *
 *
 **************************************************/
-
-
-
 $(document).ready(function() {
 
 /*************************************************
@@ -24,9 +21,14 @@ $(document).ready(function() {
 *              ON DOCUMENT READY
 *
 **************************************************/
-    var again;
 
-    do {
+    /*************************************************
+    *
+    *              GET CURRENT TIME
+    *
+    **************************************************/
+
+    var getDateTime = function() {
       var d = new Date();
       if (d.getMinutes() <= 9) {
         var minutes = "0" + d.getMinutes();
@@ -40,85 +42,39 @@ $(document).ready(function() {
       };
       var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var time = monthArray[d.getMonth()] + " " + d.getDate() + " " + hours + ":" + minutes;
-      var welcomeTask = `<li class="task">
-          <div class="first-line">
-
-            <div class="task-content">
-              <div class="tick-box">
-                <i class="glyphicon glyphicon-ok"></i>
-              </div>
-
-              <div class="task-title">
-                <input id="task-title" type="text" value="Welcome to MyToDo!">
-              </div>
-            </div>
-
-            <div class="task-ctrl">
-              <i class="glyphicon glyphicon-remove"></i>
-            </div>
-
-          </div>
-
-          <div class="meta">
-            <p id="date">Created on ${time}</p>
-          </div>
-
-      </li>`;
-      $('.tasks-list').append(welcomeTask);
-      again = false;
-    } while (again == true);
-
+      return time;
+    };
 
     /*************************************************
     *
-    *                 SIGN-IN FORM
+    *              WELCOMING TASK
     *
     **************************************************/
-
-    /*
-
-    $('body').on('click', '.sign-in-btn', function() {
-      var login = $('.login').find('.field').val();
-      var password = $('.password').find('.field').val();
-      if (
-          login == 'elina' && password == '12345' ||
-          login == 'nikita' && password == '123' ||
-          login == 'vlad' && password == '1234' ||
-          login == 'kate' && password == '12345' ||
-          login == 'a' && password == '' ||
-          login == 'public' && password ==''
-        ) {
-          var overlay = $('.overlay');
-          var signInModal = $('.sign-in-modal');
-          overlay.delay(800).hide({queue:true, duration: 1});
-          signInModal.delay(800).hide({queue:true, duration: 1});
-
-
-
-      } else {
-        $('.alert').addClass('visible-alert');
-        $('.login').find('.field').val('');
-        $('.password').find('.field').val('');
-      };
-    });
-
-    $('.password .field').keypress(function (e) {
-       var key = e.which;
-       if(key == 13) {
-          $('.sign-in-btn').trigger('click');
-          $(this).blur();
-        }
-     });
-
-     $('.login .field').keypress(function (e) {
-        var key = e.which;
-        if(key == 13) {
-           $('.sign-in-btn').trigger('click');
-           $(this).blur();
-         }
-      });
-
-      */
+    var again;
+      do {
+        var time = getDateTime();
+        var welcomeTask = `<li class="task">
+            <div class="first-line">
+              <div class="task-content">
+                <div class="tick-box">
+                  <i class="glyphicon glyphicon-ok"></i>
+                </div>
+                <div class="task-title">
+                  <input id="task-title" type="text" value="Welcome to MyToDo!">
+                </div>
+              </div>
+              <div class="task-ctrl">
+                <i class="glyphicon glyphicon-menu-hamburger"></i>
+                <i class="glyphicon glyphicon-remove"></i>
+              </div>
+            </div>
+            <div class="meta">
+              <p id="date">Created on ${time}</p>
+            </div>
+        </li>`;
+        $('.tasks-list').append(welcomeTask);
+        again = false;
+      } while (again == true);
 
     /*************************************************
     *
@@ -134,33 +90,18 @@ $(document).ready(function() {
 
         $(document).on('click', function() {
             var tasksList = $('.tasks-list').html();
-            //var signIn = $('.sign-in-modal').html();
-            //var overlay = $('.overlay').html();
             simpleStorage.set('tasks', $.trim(tasksList));
-            //simpleStorage.set('signed', $.trim(signIn));
-            //simpleStorage.set('overlayed', $.trim(overlay));
-
         })
-
-
 
         /*************************************************
         *
-        *                     LOAD
+        *                     AUTOLOAD
         *
         **************************************************/
 
-
-        //var signIn = simpleStorage.get('signed');
-        //var overlay = simpleStorage.get('overlayed');
         var tasks = simpleStorage.get('tasks');
         var name = simpleStorage.get('login');
-        //$('.sign-in-modal').html(signIn);
-        //$('.overlay').html(overlay);
         //$('.tasks-list').html(tasks);
-
-
-
 
     /*************************************************
     *
@@ -168,24 +109,10 @@ $(document).ready(function() {
     *
     **************************************************/
 
-
     $('#addTask').on('click', function() {
       var input = $(this).closest('.newTaskBlock').find('input'); //gets the input element
-      simpleStorage.set('input', input.val());
-      var d = new Date();
-      if (d.getMinutes() <= 9) {
-        var minutes = "0" + d.getMinutes();
-      } else {
-        var minutes = d.getMinutes();
-      };
-      if (d.getHours() <= 9) {
-        var hours = "0" + d.getHours();
-      } else {
-        var hours = d.getHours();
-      };
-      var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      var time = monthArray[d.getMonth()] + " " + d.getDate() + " " + hours + ":" + minutes;
-      var task = `<li class="task">
+      var time = getDateTime();
+      var newTask = `<li class="task">
           <div class="first-line">
             <div class="task-content">
               <div class="tick-box">
@@ -196,6 +123,7 @@ $(document).ready(function() {
               </div>
             </div>
             <div class="task-ctrl">
+              <i class="glyphicon glyphicon-menu-hamburger"></i>
               <i class="glyphicon glyphicon-remove"></i>
             </div>
           </div>
@@ -203,9 +131,8 @@ $(document).ready(function() {
             <p id="date">Created on ${time}</p>
           </div>
       </li>`;
-
       if (input.val() != '' ) {
-        $('.tasks-list').append(task);
+        $('.tasks-list').append(newTaske);
         input.val('');
       } else {
         alert('Choose a name for your task!');
@@ -240,7 +167,6 @@ $(document).ready(function() {
 
     });
 
-
     /*************************************************
     *
     *                 RENAME TASK
@@ -258,16 +184,11 @@ $(document).ready(function() {
     *
     **************************************************/
 
-
-
-
          $('.tasks-list').on('keydown', '#task-title', function (e) {
              var key = e.which;
              if(key == 13) {
                 var newTitle = $(this).val();
                 if (newTitle != '') {
-                  console.log($(this).val().length);
-                  $(this).width($(this).val().length*10 );
                   $(this).blur();
                 } else {
                   alert("Enter a name");
@@ -276,15 +197,6 @@ $(document).ready(function() {
 
               }
           });
-
-
-
-
-
-
-
-
-
 
     /*************************************************
     *
@@ -298,13 +210,11 @@ $(document).ready(function() {
       removeSnd.play();
     });
 
-
     /*************************************************
     *
     *                   SORTABLE
     *
     **************************************************/
-
 
     $( ".tasks-list" ).sortable({
       axis: "y",

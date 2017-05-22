@@ -37,7 +37,7 @@
 
 
 
-html, body, h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, button, input, span {
+html, body, h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, input {
   font-size: 16px;
   font-family: "Helvetica Neue", sans-serif;
   padding: 0;
@@ -164,7 +164,7 @@ padding: 5px 5px;
 
 }
 .newTaskBlock {
-  margin: 20px 0;
+  margin: 20px 0 10px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -204,9 +204,7 @@ padding: 5px 5px;
   cursor: pointer;
   color: #fff;
 }
-.tasks-box {
-  min-height: 40%;
-}
+
 
 
 
@@ -218,7 +216,7 @@ padding: 5px 5px;
 **************************************************/
 
 .tasks-list {
-  padding-top: 15px;
+  padding: 20px 0;
 }
 .task {
   line-height: 1.5;
@@ -314,6 +312,10 @@ i {
 .glyphicon-remove:active {
   background-color: #5b7a59;
   color: #fff;
+}
+.glyphicon-menu-hamburger {
+  font-size: 1.1em;
+  padding-bottom: 1px;
 }
 
 
