@@ -105,6 +105,22 @@ $(document).ready(function() {
 
     /*************************************************
     *
+    *                  CHOOSE LIST
+    *
+    **************************************************/
+
+    // CHANGE HEADER NAME TO CURRENT LIST'S NAME
+    $('.lists-collection').on('click', '.list', function() {
+      var listName = $(this).find('#list-title').text();
+      $('.listHeader').find('h1').text(listName);
+
+    });
+
+
+
+
+    /*************************************************
+    *
     *                   ADD A TASK
     *
     **************************************************/
@@ -132,7 +148,7 @@ $(document).ready(function() {
           </div>
       </li>`;
       if (input.val() != '' ) {
-        $('.tasks-list').append(newTaske);
+        $('.tasks-list').append(newTask);
         input.val('');
       } else {
         alert('Choose a name for your task!');
@@ -219,6 +235,11 @@ $(document).ready(function() {
     $( ".tasks-list" ).sortable({
       axis: "y",
       containment: ".tasks-box",
+      distance: 5
+    });
+    $('.lists-collection').sortable({
+      axis: "y",
+      containment: ".lists-box",
       distance: 5
     });
 
