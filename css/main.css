@@ -37,7 +37,7 @@
 
 
 
-body, h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, button, input, span {
+html, body, h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, button, input, span {
   font-size: 16px;
   font-family: "Helvetica Neue", sans-serif;
   padding: 0;
@@ -46,27 +46,38 @@ body, h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, button, input, span {
   font-weight: lighter;
 }
 /* Main Content */
+html {
+  height: 100%;
+}
 body {
-  height: 820px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
 }
 .tasks-block {
-  width: 90%;
-  float: right;
+  width: 80%;
   background-color: #d6d5b9;
   display: flex;
   flex-flow: column nowrap;
-  min-height: 100%;
   padding-bottom: 50px;
+  height: 100%;
 }
 .content {
   display: flex;
   min-height: 100%;
+  width: 100%;
+  justify-content: flex-end;
 }
 .nav-block {
   min-height: 100%;
-  width: 25%;
+  width: 20%;
   background-color: #eee;
   display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 
@@ -87,9 +98,13 @@ body {
 }
 .logo-wrapper {
   background-color: #668964;
-  padding: 4px 10px;
+  width: 110px;
+  height: 50px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .logo {
   height: 45px;
@@ -138,6 +153,7 @@ padding: 5px 5px;
   width: 100%;
   height: 45px;
   background-color: #668964;
+  flex-shrink: 0;
 
 }
 .listHeader h1 {
@@ -229,6 +245,7 @@ li:active {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 .tick-box {
   display: block;
@@ -246,7 +263,9 @@ li:active {
   position: relative;
   top: -4px;
 }
-
+.task-title {
+  width: 100%;
+}
 #task-title {
 
   line-height: 1.5;
@@ -256,6 +275,7 @@ li:active {
   height: 100%;
   background: transparent;
   border: none;
+  width: 100%;
 }
 .meta {
 
@@ -435,3 +455,17 @@ i {
   -webkit-box-shadow: 0 2px 4px;
   box-shadow: 0 2px 4px;
 }
+
+/*************************************************
+*
+*                 MEDIA QUERIES
+*
+**************************************************/
+/*
+@media only screen and (max-width: 1075px) {
+    .nav-block {
+      display: none;
+    }
+
+}
+*/

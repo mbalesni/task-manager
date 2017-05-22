@@ -40,7 +40,7 @@ $(document).ready(function() {
       };
       var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var time = monthArray[d.getMonth()] + " " + d.getDate() + " " + hours + ":" + minutes;
-      var newTask = `<li class="task">
+      var welcomeTask = `<li class="task">
           <div class="first-line">
 
             <div class="task-content">
@@ -64,7 +64,7 @@ $(document).ready(function() {
           </div>
 
       </li>`;
-      $('.tasks-list').append(newTask);
+      $('.tasks-list').append(welcomeTask);
       again = false;
     } while (again == true);
 
@@ -75,7 +75,9 @@ $(document).ready(function() {
     *
     **************************************************/
 
-    $('.sign-in-modal').on('click', '.sign-in-btn', function() {
+    /*
+
+    $('body').on('click', '.sign-in-btn', function() {
       var login = $('.login').find('.field').val();
       var password = $('.password').find('.field').val();
       if (
@@ -86,8 +88,12 @@ $(document).ready(function() {
           login == 'a' && password == '' ||
           login == 'public' && password ==''
         ) {
-        $(this).closest('.sign-in-modal').delay(800).hide({queue:true, duration: 1});
-        $(this).closest('body').find('.overlay').delay(800).hide({queue:true, duration: 1});
+          var overlay = $('.overlay');
+          var signInModal = $('.sign-in-modal');
+          overlay.delay(800).hide({queue:true, duration: 1});
+          signInModal.delay(800).hide({queue:true, duration: 1});
+
+
 
       } else {
         $('.alert').addClass('visible-alert');
@@ -111,6 +117,8 @@ $(document).ready(function() {
            $(this).blur();
          }
       });
+
+      */
 
     /*************************************************
     *
@@ -141,26 +149,29 @@ $(document).ready(function() {
         *                     LOAD
         *
         **************************************************/
+
+
         //var signIn = simpleStorage.get('signed');
         //var overlay = simpleStorage.get('overlayed');
         var tasks = simpleStorage.get('tasks');
         var name = simpleStorage.get('login');
         //$('.sign-in-modal').html(signIn);
         //$('.overlay').html(overlay);
-        $('.tasks-list').html(tasks);
+        //$('.tasks-list').html(tasks);
 
 
 
 
     /*************************************************
     *
-    *                 ADD A TASK
+    *                   ADD A TASK
     *
     **************************************************/
 
 
     $('#addTask').on('click', function() {
       var input = $(this).closest('.newTaskBlock').find('input'); //gets the input element
+      simpleStorage.set('input', input.val());
       var d = new Date();
       if (d.getMinutes() <= 9) {
         var minutes = "0" + d.getMinutes();
@@ -176,27 +187,21 @@ $(document).ready(function() {
       var time = monthArray[d.getMonth()] + " " + d.getDate() + " " + hours + ":" + minutes;
       var task = `<li class="task">
           <div class="first-line">
-
             <div class="task-content">
               <div class="tick-box">
                 <i class="glyphicon glyphicon-ok"></i>
               </div>
-
               <div class="task-title">
                 <input id="task-title" type="text" value="${input.val()}">
               </div>
             </div>
-
             <div class="task-ctrl">
               <i class="glyphicon glyphicon-remove"></i>
             </div>
-
           </div>
-
           <div class="meta">
             <p id="date">Created on ${time}</p>
           </div>
-
       </li>`;
 
       if (input.val() != '' ) {
@@ -205,6 +210,8 @@ $(document).ready(function() {
       } else {
         alert('Choose a name for your task!');
       }
+      $('.task').find('#task-title').trigger('new');
+
     });
 
     // click addTask button when enter is pressed
@@ -238,43 +245,36 @@ $(document).ready(function() {
     *
     *                 RENAME TASK
     *
+    *
+    *     I want the following functionality:
+    *
+    *     – on creating a new task, set #task-title width to fit its content
+    *     - on clicking on #task-title, set it width to 100%
+    *     - on #task-title blur, set its width to fit its content
+    *
+    *
+    *
+    *
+    *
     **************************************************/
+
+
+
 
          $('.tasks-list').on('keydown', '#task-title', function (e) {
              var key = e.which;
              if(key == 13) {
                 var newTitle = $(this).val();
                 if (newTitle != '') {
+                  console.log($(this).val().length);
+                  $(this).width($(this).val().length*10 );
                   $(this).blur();
-                  $(document).trigger('click');
                 } else {
                   alert("Enter a name");
 
                 };
 
               }
-          });
-
-          /*************************************************
-          *
-          *                 DYNAMIC RESIZING
-          *
-          **************************************************/
-
-          // make a fix for when it exceeds 600px
-
-          $('.tasks-list').on('keydown', '#task-title', function() {
-            var oldWidth = $(this).width();
-            function resizeInput() {
-              if ($(this).width() < 600) {
-                $(this).attr('size', $(this).val().length)+5;
-              } else {
-                $(this).width(599);
-                $(this).attr('size', $(this).val().length);
-              };
-            };
-            $(this).keyup(resizeInput).each(resizeInput);
-
           });
 
 
