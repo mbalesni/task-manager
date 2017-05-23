@@ -47,7 +47,7 @@ $(document).ready(function() {
 
     /*************************************************************************
     *
-    *              CURRENT LIST'S NAME IN HEADER & WELCOMING TASK
+    *              WELCOMING TASK
     *
     **************************************************************************/
     var again;
@@ -57,15 +57,15 @@ $(document).ready(function() {
             <div class="first-line">
               <div class="task-content">
                 <div class="tick-box">
-                  <i class="glyphicon glyphicon-ok"></i>
+                  <img class="icon-checked" src="images/icon-checked.png">
                 </div>
                 <div class="task-title">
                   <input id="task-title" type="text" value="Welcome to MyToDo!">
                 </div>
               </div>
               <div class="task-ctrl">
-                <i class="glyphicon glyphicon-menu-hamburger"></i>
-                <i class="glyphicon glyphicon-remove"></i>
+                <img class="icon-hamburger" src="images/icon-hamburger.png">
+                <i class="fa fa-trash-o"></i>
               </div>
             </div>
             <div class="meta">
@@ -117,15 +117,18 @@ $(document).ready(function() {
     *
     **************************************************/
 
-    // CHANGE HEADER NAME TO CURRENT LIST'S NAME
+    // CHANGE HEADER NAME TO CURRENT LIST'S NAME AND ADD HOVER STATE
     $('.lists-collection').on('click', '.list', function() {
+      var listName = $(this).find('#list-title').text();
       $('.list').removeClass('current-list');
       $(this).addClass('current-list');
-      var listName = $(this).find('#list-title').text();
       $('.listHeader').find('h1').text(listName);
       console.log(`Current list's name is ${listName}`);
-
+      $('.tasks-list').find('.task').addClass('invisible');
+      $('.tasks-list').find(`.${listName}`).removeClass('invisible');
     });
+
+
 
 
 
@@ -139,19 +142,20 @@ $(document).ready(function() {
     $('#addTask').on('click', function() {
       var input = $(this).closest('.newTaskBlock').find('input'); //gets the input element
       var time = getDateTime();
-      var newTask = `<li class="task">
+      var currentList = simpleStorage.get('currentList');
+      var newTask = `<li class="task ${currentList}">
           <div class="first-line">
             <div class="task-content">
-              <div class="tick-box">
-                <i class="glyphicon glyphicon-ok"></i>
-              </div>
+            <div class="tick-box">
+              <img class="icon-checked" src="images/icon-checked.png">
+            </div>
               <div class="task-title">
                 <input id="task-title" type="text" value="${input.val()}">
               </div>
             </div>
             <div class="task-ctrl">
-              <i class="glyphicon glyphicon-menu-hamburger"></i>
-              <i class="glyphicon glyphicon-remove"></i>
+              <img class="icon-hamburger" src="images/icon-hamburger.png">
+              <i class="fa fa-trash-o"></i>
             </div>
           </div>
           <div class="meta">
@@ -186,7 +190,7 @@ $(document).ready(function() {
     // check task when button is clicked
     $('.tasks-list').on('click', '.tick-box', function() {
       $(this).closest('.first-line').find('#task-title').toggleClass('checked');
-      $(this).find('.glyphicon-ok').toggleClass('visible');
+      $(this).find('.icon-checked').toggleClass('visible');
       if ($(this).closest('.task').find('#task-title').hasClass('checked')) {
         var crossSnd = new Audio("sound/crossed2.wav");
         crossSnd.play();
@@ -220,8 +224,8 @@ $(document).ready(function() {
     *
     **************************************************/
 
-    $('.tasks-list').on('click', '.glyphicon-remove', function() {
-      $(this).closest('.task').fadeOut(400).remove();
+    $('.tasks-list').on('click', '.fa-trash-o', function() {
+      $(this).closest('.task').fadeOut(400, function(){ $(this).remove(); });
       var removeSnd = new Audio("sound/paper.mp3");
       removeSnd.play();
     });

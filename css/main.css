@@ -114,7 +114,7 @@ body {
 display: flex;
 align-items: center;
 margin-top: 10px;
-padding: 5px 5px;
+padding: 5px 5px 0px;
 
 }
 .user-toolbar .user-name {
@@ -212,7 +212,7 @@ padding: 5px 5px;
 *
 **************************************************/
 .lists-collection {
-  padding: 8px 0;
+  padding: 15px 0;
 }
 .list {
   display: flex;
@@ -235,11 +235,13 @@ padding: 5px 5px;
   font-size: 1.7em;
   align-self: center;
 }
-.list .glyphicon {
-  font-size: 1.3em;
+.icon-list {
+  width: 16px;
+  height: 16px;
 }
-.list .glyphicon-option-horizontal {
-  padding-right: 5px;
+.icon-dots {
+  width: 16px;
+  height: 16px;
 }
 .list-ctrl {
   display: flex;
@@ -285,21 +287,24 @@ padding: 5px 5px;
   width: 100%;
 }
 .tick-box {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #fff;
   border: 1px solid #668964;
   border-radius: 5px;
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
   margin-right: 7px;
 
 }
-.glyphicon-ok {
+.icon-checked {
   visibility: hidden;
-  font-size: 0.9em;
-  position: relative;
-  top: -4px;
+  width: 18px;
+  height: 20px;
 }
+
+
 .task-title {
   width: 100%;
 }
@@ -314,35 +319,38 @@ padding: 5px 5px;
   border: none;
   width: 100%;
 }
-.meta {
 
-}
 #date {
   font-size: 0.5em;
   font-family: sans-serif;
   padding-left: 35px;
 }
-i {
-  text-decoration: none !important;
-}
-
 .task-ctrl {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin-right: 10px;
 }
-.glyphicon-pencil {
-  font-size: 1em;
-  padding: 6px;
-  margin: 3px 5px;
+.icon-hamburger {
+  width: 20px;
+  height: 20px;
+  padding: 5px 5px 3px;;
+  box-sizing: content-box;
+
+}
+.fa-trash-o {
+  font-size: 25px;
+  padding: 5px;
+  box-sizing: content-box;
   border-radius: 3px;
 }
-.glyphicon-pencil:hover,
-.glyphicon-pencil:active {
+.fa-trash-o:hover,
+.fa-trash-o:active {
   background-color: #5b7a59;
   color: #fff;
 }
 .glyphicon-remove {
-  font-size: 1.3em;
+  font-size: 1em;
   padding: 3px;
   margin: 3px 5px;
   border-radius: 3px;
@@ -351,10 +359,6 @@ i {
 .glyphicon-remove:active {
   background-color: #5b7a59;
   color: #fff;
-}
-.glyphicon-menu-hamburger {
-  font-size: 1.1em;
-  padding-bottom: 1px;
 }
 
 /*************************************************
@@ -369,6 +373,9 @@ i {
 }
 .invisible {
   visibility: hidden !important;
+  height: 0;
+  padding: 0;
+  margin: 0;
   opacity: 0;
 }
 .checked {
@@ -391,7 +398,7 @@ i {
   box-shadow: 0 2px 4px;
 }
 .current-list {
-  background-color: #ddd;
+  background-color: #d6d5b9 !important;
 }
 
 /*************************************************
