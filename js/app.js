@@ -107,7 +107,7 @@ $(document).ready(function() {
         var lists = simpleStorage.get('lists')
         var tasks = simpleStorage.get('tasks');
         var currentListName = simpleStorage.get('currentList');
-        $('.tasks-list').html(tasks);
+        //$('.tasks-list').html(tasks);
         $('.listHeader').find('h1').text(currentListName);
         $('.lists-collection').html(lists);
 
