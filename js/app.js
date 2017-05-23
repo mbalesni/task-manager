@@ -53,7 +53,7 @@ $(document).ready(function() {
     var again;
       do {
         var time = getDateTime();
-        var welcomeTask = `<li class="task">
+        var welcomeTask = `<li class="task Main">
             <div class="first-line">
               <div class="task-content">
                 <div class="tick-box">
