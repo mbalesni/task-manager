@@ -45,11 +45,11 @@ $(document).ready(function() {
       return time;
     };
 
-    /*************************************************
+    /*************************************************************************
     *
-    *              WELCOMING TASK
+    *              CURRENT LIST'S NAME IN HEADER & WELCOMING TASK
     *
-    **************************************************/
+    **************************************************************************/
     var again;
       do {
         var time = getDateTime();
@@ -72,8 +72,10 @@ $(document).ready(function() {
               <p id="date">Created on ${time}</p>
             </div>
         </li>`;
+
         $('.tasks-list').append(welcomeTask);
         again = false;
+
       } while (again == true);
 
     /*************************************************
@@ -89,19 +91,25 @@ $(document).ready(function() {
         **************************************************/
 
         $(document).on('click', function() {
+            var listsCollection = $('.lists-collection').html();
+            var currentListName = $('.current-list').find('#list-title').text();
             var tasksList = $('.tasks-list').html();
             simpleStorage.set('tasks', $.trim(tasksList));
-        })
+            simpleStorage.set('currentList', currentListName);
+            simpleStorage.set('lists', $.trim(listsCollection));
+        });
 
         /*************************************************
         *
         *                     AUTOLOAD
         *
         **************************************************/
-
+        var lists = simpleStorage.get('lists')
         var tasks = simpleStorage.get('tasks');
-        var name = simpleStorage.get('login');
-        //$('.tasks-list').html(tasks);
+        var currentListName = simpleStorage.get('currentList');
+        $('.tasks-list').html(tasks);
+        $('.listHeader').find('h1').text(currentListName);
+        $('.lists-collection').html(lists);
 
     /*************************************************
     *
@@ -111,8 +119,11 @@ $(document).ready(function() {
 
     // CHANGE HEADER NAME TO CURRENT LIST'S NAME
     $('.lists-collection').on('click', '.list', function() {
+      $('.list').removeClass('current-list');
+      $(this).addClass('current-list');
       var listName = $(this).find('#list-title').text();
       $('.listHeader').find('h1').text(listName);
+      console.log(`Current list's name is ${listName}`);
 
     });
 
@@ -187,17 +198,6 @@ $(document).ready(function() {
     *
     *                 RENAME TASK
     *
-    *
-    *     I want the following functionality:
-    *
-    *     – on creating a new task, set #task-title width to fit its content
-    *     - on clicking on #task-title, set it width to 100%
-    *     - on #task-title blur, set its width to fit its content
-    *
-    *
-    *
-    *
-    *
     **************************************************/
 
          $('.tasks-list').on('keydown', '#task-title', function (e) {
@@ -235,13 +235,20 @@ $(document).ready(function() {
     $( ".tasks-list" ).sortable({
       axis: "y",
       containment: ".tasks-box",
-      distance: 5
+      distance: 5,
+      update: function( event, ui ) {
+        var tasks = $('.tasks-list').html();
+        simpleStorage.set('tasks', $.trim(tasks));
+
+      }
     });
     $('.lists-collection').sortable({
       axis: "y",
       containment: ".lists-box",
-      distance: 5
+      distance: 5,
+      update: function( event, ui ) {
+        var listsCollection = $('.lists-collection').html();
+        simpleStorage.set('lists', $.trim(listsCollection));
+      }
     });
-
-
 });
