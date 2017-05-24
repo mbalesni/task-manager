@@ -16,6 +16,7 @@
 **************************************************/
 $(document).ready(function() {
 
+
 /*************************************************
 *
 *              ON DOCUMENT READY
@@ -50,6 +51,7 @@ $(document).ready(function() {
     *              WELCOMING TASK
     *
     **************************************************************************/
+    /*
     var again;
       do {
         var time = getDateTime();
@@ -72,11 +74,15 @@ $(document).ready(function() {
               <p id="date">Created on ${time}</p>
             </div>
         </li>`;
+        var currentListName = $('.current-list').find('#list-title').text();
+        var currentListHTML = $('.tasks-list').html();
+        simpleStorage.set(`${currentListName}`, $.trim(currentListHTML));
 
-        $('.tasks-list').append(welcomeTask);
+
         again = false;
 
       } while (again == true);
+      /*
 
     /*************************************************
     *
@@ -93,10 +99,10 @@ $(document).ready(function() {
         $(document).on('click', function() {
             var listsCollection = $('.lists-collection').html();
             var currentListName = $('.current-list').find('#list-title').text();
-            var tasksList = $('.tasks-list').html();
-            simpleStorage.set('tasks', $.trim(tasksList));
-            simpleStorage.set('currentList', currentListName);
+            var currentListHTML = $('.tasks-list').html();
             simpleStorage.set('lists', $.trim(listsCollection));
+            simpleStorage.set(`${currentListName}`, $.trim(currentListHTML));
+            simpleStorage.set('currentList', currentListName);
         });
 
         /*************************************************
@@ -105,9 +111,10 @@ $(document).ready(function() {
         *
         **************************************************/
         var lists = simpleStorage.get('lists')
-        var tasks = simpleStorage.get('tasks');
         var currentListName = simpleStorage.get('currentList');
-        //$('.tasks-list').html(tasks);
+        var newListHTML = simpleStorage.get(`${currentListName}`);
+        $('.tasks-list').html(newListHTML);
+
         $('.listHeader').find('h1').text(currentListName);
         $('.lists-collection').html(lists);
 
@@ -115,17 +122,26 @@ $(document).ready(function() {
     *
     *                  CHOOSE LIST
     *
+    *
+    * 1. change .current-list class
+    * 2. Get .tasks-list of the new list
+    * 3. Append new .tasks-list to the .tasks-box
+    *
+    *
+    *
+    *
     **************************************************/
 
-    // CHANGE HEADER NAME TO CURRENT LIST'S NAME AND ADD HOVER STATE
+
     $('.lists-collection').on('click', '.list', function() {
       var listName = $(this).find('#list-title').text();
+      var newListHTML = simpleStorage.get(`${listName}`);
       $('.list').removeClass('current-list');
       $(this).addClass('current-list');
       $('.listHeader').find('h1').text(listName);
-      console.log(`Current list's name is ${listName}`);
-      $('.tasks-list').find('.task').addClass('invisible');
-      $('.tasks-list').find(`.${listName}`).removeClass('invisible');
+      $('.tasks-list').html(newListHTML);
+
+
     });
 
 
@@ -143,7 +159,7 @@ $(document).ready(function() {
       var input = $(this).closest('.newTaskBlock').find('input'); //gets the input element
       var time = getDateTime();
       var currentList = simpleStorage.get('currentList');
-      var newTask = `<li class="task ${currentList}">
+      var newTask = `<li class="task">
           <div class="first-line">
             <div class="task-content">
             <div class="tick-box">

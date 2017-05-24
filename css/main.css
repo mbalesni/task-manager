@@ -137,10 +137,50 @@ padding: 5px 5px 0px;
 .nameLetter {
   color: #fff;
   font-weight: normal;
-
 }
 
-
+    /*************************************************
+    *
+    *                   LISTS-BOX
+    *
+    **************************************************/
+    .lists-collection {
+      padding: 15px 0;
+    }
+    .list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 10px;
+    }
+    .list:hover,
+    .list:active {
+      background-color: #ddd;
+      cursor: pointer;
+    }
+    .list-content {
+      display: flex;
+      align-items: center;
+    }
+    #list-title {
+      padding-top: 1px;
+      padding-left: 10px;
+      font-size: 1.7em;
+      align-self: center;
+    }
+    .icon-list {
+      width: 16px;
+      height: 16px;
+    }
+    .icon-dots {
+      width: 16px;
+      height: 16px;
+    }
+    .list-ctrl {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
 /*************************************************
 *
@@ -213,161 +253,116 @@ padding: 5px 5px 0px;
   color: #fff;
 }
 
+    /*************************************************
+    *
+    *                 TASKS-BOX
+    *
+    **************************************************/
 
-/*************************************************
-*
-*                   LISTS-BOX
-*
-**************************************************/
-.lists-collection {
-  padding: 15px 0;
-}
-.list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 10px;
-}
-.list:hover,
-.list:active {
-  background-color: #ddd;
-  cursor: pointer;
-}
-.list-content {
-  display: flex;
-  align-items: center;
-}
-#list-title {
-  padding-top: 1px;
-  padding-left: 10px;
-  font-size: 1.7em;
-  align-self: center;
-}
-.icon-list {
-  width: 16px;
-  height: 16px;
-}
-.icon-dots {
-  width: 16px;
-  height: 16px;
-}
-.list-ctrl {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .tasks-list {
+      padding: 20px 0;
+    }
+    .task {
+      line-height: 1.5;
+      padding: 5px 0;
+      padding-left: 10px;
+      margin: 0 15px 2px;
+      font-size: 1.5em;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: space-between;
+      flex-flow: column nowrap;
+      border-radius: 5px;
+    }
+    .task:hover,
+    .task:active {
+      background-color: #ddd;
+      cursor: pointer;
+    }
+    .first-line {
+      display: flex;
+      justify-content: space-between;
+    }
+    .task-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .tick-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #668964;
+      border-radius: 5px;
+      width: 23px;
+      height: 23px;
+      margin-right: 7px;
 
-
-/*************************************************
-*
-*                 TASKS-BOX
-*
-**************************************************/
-
-.tasks-list {
-  padding: 20px 0;
-}
-.task {
-  line-height: 1.5;
-  padding: 5px 0;
-  padding-left: 10px;
-  margin: 0 15px 2px;
-  font-size: 1.5em;
-  background-color: #f9f9f9;
-  display: flex;
-  justify-content: space-between;
-  flex-flow: column nowrap;
-  border-radius: 5px;
-}
-.task:hover,
-.task:active {
-  background-color: #ddd;
-  cursor: pointer;
-}
-.first-line {
-  display: flex;
-  justify-content: space-between;
-}
-.task-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-.tick-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-  border: 1px solid #668964;
-  border-radius: 5px;
-  width: 23px;
-  height: 23px;
-  margin-right: 7px;
-
-}
-.icon-checked {
-  visibility: hidden;
-  width: 18px;
-  height: 20px;
-}
+    }
+    .icon-checked {
+      visibility: hidden;
+      width: 18px;
+      height: 20px;
+    }
 
 
-.task-title {
-  width: 100%;
-}
-#task-title {
+    .task-title {
+      width: 100%;
+    }
+    #task-title {
 
-  line-height: 1.5;
-  font-size: 1.2em;
-  flex-shrink: 0;
-  outline: none;
-  height: 100%;
-  background: transparent;
-  border: none;
-  width: 100%;
-}
+      line-height: 1.5;
+      font-size: 1.2em;
+      flex-shrink: 0;
+      outline: none;
+      height: 100%;
+      background: transparent;
+      border: none;
+      width: 100%;
+    }
 
-#date {
-  font-size: 0.5em;
-  font-family: sans-serif;
-  padding-left: 35px;
-}
-.task-ctrl {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-right: 10px;
-}
-.icon-hamburger {
-  width: 20px;
-  height: 20px;
-  padding: 5px 5px 3px;;
-  box-sizing: content-box;
+    #date {
+      font-size: 0.5em;
+      font-family: sans-serif;
+      padding-left: 35px;
+    }
+    .task-ctrl {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-right: 10px;
+    }
+    .icon-hamburger {
+      width: 20px;
+      height: 20px;
+      padding: 5px 5px 3px;;
+      box-sizing: content-box;
 
-}
-.fa-trash-o {
-  font-size: 25px;
-  padding: 5px;
-  box-sizing: content-box;
-  border-radius: 3px;
-}
-.fa-trash-o:hover,
-.fa-trash-o:active {
-  background-color: #5b7a59;
-  color: #fff;
-}
-.glyphicon-remove {
-  font-size: 1em;
-  padding: 3px;
-  margin: 3px 5px;
-  border-radius: 3px;
-}
-.glyphicon-remove:hover,
-.glyphicon-remove:active {
-  background-color: #5b7a59;
-  color: #fff;
-}
+    }
+    .fa-trash-o {
+      font-size: 25px;
+      padding: 5px;
+      box-sizing: content-box;
+      border-radius: 3px;
+    }
+    .fa-trash-o:hover,
+    .fa-trash-o:active {
+      background-color: #5b7a59;
+      color: #fff;
+    }
+    .glyphicon-remove {
+      font-size: 1em;
+      padding: 3px;
+      margin: 3px 5px;
+      border-radius: 3px;
+    }
+    .glyphicon-remove:hover,
+    .glyphicon-remove:active {
+      background-color: #5b7a59;
+      color: #fff;
+    }
 
 /*************************************************
 *
