@@ -84,51 +84,11 @@ $(document).ready(function() {
       } while (again == true);
       /*
 
-    /*************************************************
-    *
-    *                 LOCAL STORAGE
-    *
-    **************************************************/
 
-        /*************************************************
-        *
-        *                     AUTOSAVE
-        *
-        **************************************************/
-
-        $(document).on('click', function() {
-            var listsCollection = $('.lists-collection').html();
-            var currentListName = $('.current-list').find('#list-title').text();
-            var currentListHTML = $('.tasks-list').html();
-            simpleStorage.set('lists', $.trim(listsCollection));
-            simpleStorage.set(`${currentListName}`, $.trim(currentListHTML));
-            simpleStorage.set('currentList', currentListName);
-        });
-
-        /*************************************************
-        *
-        *                     AUTOLOAD
-        *
-        **************************************************/
-        var lists = simpleStorage.get('lists')
-        var currentListName = simpleStorage.get('currentList');
-        var newListHTML = simpleStorage.get(`${currentListName}`);
-        $('.tasks-list').html(newListHTML);
-
-        $('.listHeader').find('h1').text(currentListName);
-        $('.lists-collection').html(lists);
 
     /*************************************************
     *
     *                  CHOOSE LIST
-    *
-    *
-    * 1. change .current-list class
-    * 2. Get .tasks-list of the new list
-    * 3. Append new .tasks-list to the .tasks-box
-    *
-    *
-    *
     *
     **************************************************/
 
@@ -139,15 +99,73 @@ $(document).ready(function() {
       $('.list').removeClass('current-list');
       $(this).addClass('current-list');
       $('.listHeader').find('h1').text(listName);
+      $('.tasks-list').html('');
       $('.tasks-list').html(newListHTML);
 
 
     });
 
+    /*************************************************
+    *
+    *                    ADD LIST
+    *
+    **************************************************/
+    $('.add-list-btn').on('click', function() {
+      $('.overlay').addClass('visible');
+      $('.add-list-modal').addClass('modal-visible');
+    });
 
+    $('.cancel-btn').on('click', function() {
+      $('.add-list-input').val('');
+      $('.add-list-modal').removeClass('modal-visible');
+      $('.overlay').removeClass('visible');
+    });
 
+    $('.submit-btn').on('click', function() {
+      var listName = $('.add-list-input').val();
+      var newList = `<li class="list">
+        <div class="list-content">
+          <img class="icon-list" src="images/icon-list.png">
+          <h1 id="list-title">${listName}</h1>
+        </div>
+        <div class="list-ctrl">
+          <img class="icon-dots" src="images/icon-dots.png">
+        </div>
+      </li>`;
+      $('.add-list-input').val('');
+      $('.add-list-modal').removeClass('modal-visible');
+      $('.overlay').removeClass('visible');
+      $('.lists-collection').append(newList);
+      $(document).trigger('click');
+      $('.list').removeClass('current-list');
+      $('.list').last().addClass('current-list');
+      $('.tasks-list').html('');
+      $('.listHeader').find('h1').text(listName);
+      $(document).trigger('click');
+    });
 
+    $('.add-list-input').on('keypress', function(e) {
+      var key = e.which;
+      if(key == 13) {
+         $('.submit-btn').trigger('click');
+         return;
+       }
+    });
 
+    /*************************************************
+    *
+    *                   REMOVE A LIST
+    *
+    **************************************************/
+
+    $('.lists-collection').on('click', '.icon-dots', function() {
+      var listName = $(this).closest('.list').find('#list-title').text();
+      simpleStorage.set(`${listName}`, '');
+      if ($(this).closest('.list').hasClass('.current-list')) {
+        $('.tasks-list').html('');
+      }
+      $(this).closest('.list').remove();
+    });
 
     /*************************************************
     *
@@ -196,6 +214,11 @@ $(document).ready(function() {
           return false;
         }
      });
+
+
+
+
+
 
     /*************************************************
     *
@@ -271,4 +294,40 @@ $(document).ready(function() {
         simpleStorage.set('lists', $.trim(listsCollection));
       }
     });
+
+    /*************************************************
+    *
+    *                 LOCAL STORAGE
+    *
+    **************************************************/
+
+        /*************************************************
+        *
+        *                     AUTOSAVE
+        *
+        **************************************************/
+
+        $(document).on('click', function() {
+            var listsCollection = $('.lists-collection').html();
+            var currentListName = $('.current-list').find('#list-title').text();
+            var currentListHTML = $('.tasks-list').html();
+            simpleStorage.set('lists', $.trim(listsCollection));
+            simpleStorage.set(`${currentListName}`, $.trim(currentListHTML));
+            simpleStorage.set('currentList', currentListName);
+            $('.listHeader').find('h1').text(currentListName);
+        });
+
+
+        /*************************************************
+        *
+        *                     AUTOLOAD
+        *
+        **************************************************/
+        var lists = simpleStorage.get('lists')
+        var currentListName = simpleStorage.get('currentList');
+        var newListHTML = simpleStorage.get(`${currentListName}`);
+        $('.tasks-list').html(newListHTML);
+        $('.listHeader').find('h1').text(currentListName);
+        $('.lists-collection').html(lists);
+
 });

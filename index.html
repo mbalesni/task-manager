@@ -21,21 +21,21 @@
 
           <div class="user-toolbar">
             <div class="nameIcon">
-              <h1 class="nameLetter">E</h1>
+              <h1 class="nameLetter">N</h1>
             </div>
-            <h1 class="user-name">Elina Pyatashova</h1>
+            <h1 class="user-name">Nikita Balesny</h1>
           </div>
 
           <div class="lists-box">
             <ol class="lists-collection list-unstyled">
 
-              <li class="list">
+              <li class="list main">
                 <div class="list-content">
                   <img class="icon-list" src="images/icon-list.png">
                   <h1 id="list-title">Main</h1>
                 </div>
                 <div class="list-ctrl">
-                  <img class="icon-dots" src="images/icon-dots.png">
+                  <img class="icon-dots-main" src="images/icon-dots.png">
                 </div>
               </li>
 
@@ -62,7 +62,12 @@
             </ol>
           </div>
 
-          
+          <div class="add-list">
+            <button class="add-list-btn">
+              <img class="icon-plus" src="fonts/png/icon-plus-green.png">
+              Create a new list
+            </button>
+          </div>
 
       </div>
 
@@ -90,6 +95,30 @@
       </div>
 
     </div>
+
+    <div class="modals">
+      <div class="add-list-modal">
+        <div class="modal-content">
+
+          <div class="content-header">
+            <h1>Create New List</h1>
+            <input class="add-list-input" type="text" placeholder="List Name">
+          </div>
+
+          <div class="content-footer">
+            <button class="cancel-btn">Cancel</button>
+            <button class="submit-btn">Save</button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="overlay"></div>
+
+    </div>
+
+
+
 
 
 
