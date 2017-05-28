@@ -91,7 +91,7 @@ $(document).ready(function() {
     *                  CHOOSE LIST
     *
     **************************************************/
-
+/*
 
     $('.lists-collection').on('click', '.list', function() {
       var listName = $(this).find('#list-title').text();
@@ -101,9 +101,8 @@ $(document).ready(function() {
       $('.listHeader').find('h1').text(listName);
       $('.tasks-list').html('');
       $('.tasks-list').html(newListHTML);
-
-
     });
+*/
 
     /*************************************************
     *
@@ -157,7 +156,7 @@ $(document).ready(function() {
     *                   REMOVE A LIST
     *
     **************************************************/
-
+/*
     $('.lists-collection').on('click', '.icon-dots', function() {
       var listName = $(this).closest('.list').find('#list-title').text();
       simpleStorage.set(`${listName}`, '');
@@ -166,13 +165,13 @@ $(document).ready(function() {
       }
       $(this).closest('.list').remove();
     });
-
+*/
     /*************************************************
     *
     *                   ADD TASK
     *
     **************************************************/
-
+/*
     $('#addTask').on('click', function() {
       var input = $(this).closest('.newTaskBlock').find('input'); //gets the input element
       var time = getDateTime();
@@ -214,7 +213,7 @@ $(document).ready(function() {
           return false;
         }
      });
-
+*/
 
 
 
@@ -228,9 +227,9 @@ $(document).ready(function() {
 
     // check task when button is clicked
     $('.tasks-list').on('click', '.tick-box', function() {
-      $(this).closest('.first-line').find('#task-title').toggleClass('checked');
+      $(this).closest('.first-line').find('.task-title').toggleClass('checked');
       $(this).find('.icon-checked').toggleClass('visible');
-      if ($(this).closest('.task').find('#task-title').hasClass('checked')) {
+      if ($(this).closest('.task').find('.task-title').hasClass('checked')) {
         var crossSnd = new Audio("sound/crossed2.wav");
         crossSnd.play();
       }
@@ -242,7 +241,7 @@ $(document).ready(function() {
     *                 RENAME TASK
     *
     **************************************************/
-
+/*
          $('.tasks-list').on('keydown', '#task-title', function (e) {
              var key = e.which;
              if(key == 13) {
@@ -256,19 +255,19 @@ $(document).ready(function() {
 
               }
           });
-
+*/
     /*************************************************
     *
     *                 REMOVE TASK
     *
     **************************************************/
-
+/*
     $('.tasks-list').on('click', '.fa-trash-o', function() {
       $(this).closest('.task').fadeOut(400, function(){ $(this).remove(); });
       var removeSnd = new Audio("sound/paper.mp3");
       removeSnd.play();
     });
-
+*/
     /*************************************************
     *
     *                   SORTABLE
@@ -326,8 +325,8 @@ $(document).ready(function() {
         var lists = simpleStorage.get('lists')
         var currentListName = simpleStorage.get('currentList');
         var newListHTML = simpleStorage.get(`${currentListName}`);
-        $('.tasks-list').html(newListHTML);
-        $('.listHeader').find('h1').text(currentListName);
-        $('.lists-collection').html(lists);
+        //$('.tasks-list').html(newListHTML);
+        //$('.listHeader').find('h1').text(currentListName);
+        //$('.lists-collection').html(lists);
 
 });

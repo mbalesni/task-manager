@@ -38,11 +38,11 @@
 
 html, body, h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, input {
   font-size: 16px;
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
   padding: 0;
   margin: 0;
   color: #333;
-  font-weight: lighter;
+  font-weight: 300;
 }
 /* Main Content */
 html {
@@ -308,7 +308,7 @@ padding: 5px 5px 0px;
   flex-shrink: 0;
 
 }
-.listHeader h1 {
+.listHeader h2 {
   color: #fff;
   font-size: 1.5em;
   align-self: center;
@@ -446,13 +446,7 @@ padding: 5px 5px 0px;
       align-items: center;
       margin-right: 10px;
     }
-    .icon-hamburger {
-      width: 20px;
-      height: 20px;
-      padding: 5px 5px 3px;;
-      box-sizing: content-box;
 
-    }
     .fa-trash-o {
       font-size: 25px;
       padding: 5px;

@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,700&amp;subset=cyrillic-ext" rel="stylesheet">
   </head>
   <body>
 
-    <div class="content">
+    <div class="content" ng-controller="GlobalController as gCtrl">
 
       <div class="nav-block">
 
@@ -29,35 +30,18 @@
           <div class="lists-box">
             <ol class="lists-collection list-unstyled">
 
-              <li class="list main current-list">
-                <div class="list-content">
-                  <img class="icon-list" src="images/icon-list.png">
-                  <h1 id="list-title">Main</h1>
-                </div>
-                <div class="list-ctrl">
-                  <img class="icon-dots-main" src="images/icon-dots.png">
-                </div>
+              <li class="list" ng-repeat="list in gCtrl.lists" ng-click="gCtrl.getName(list)">
+
+                  <div class="list-content">
+                    <img class="icon-list" src="images/icon-list.png">
+                    <h1 id="list-title">{{list.name}}</h1>
+                  </div>
+                  <div class="list-ctrl">
+                    <img class="icon-dots-main" src="images/icon-dots.png" >
+                  </div>
+
               </li>
 
-              <li class="list">
-                <div class="list-content">
-                  <img class="icon-list" src="images/icon-list.png">
-                  <h1 id="list-title">Products</h1>
-                </div>
-                <div class="list-ctrl">
-                  <img class="icon-dots" src="images/icon-dots.png">
-                </div>
-              </li>
-
-              <li class="list">
-                <div class="list-content">
-                  <img class="icon-list" src="images/icon-list.png">
-                  <h1 id="list-title">University</h1>
-                </div>
-                <div class="list-ctrl">
-                  <img class="icon-dots" src="images/icon-dots.png">
-                </div>
-              </li>
 
             </ol>
           </div>
@@ -75,18 +59,66 @@
       <div class="tasks-block">
 
           <header class="listHeader">
-            <h1></h1>
+            <h2>{{gCtrl.listName}}</h2>
           </header>
 
 
-          <div class="newTaskBlock">
-              <input type="text" id="newTask" placeholder="Add a task">
-              <span id="addTask">Add</span>
-          </div>
+
+          <form class="newTaskBlock" ng-submit="gCtrl.addTask()">
+              <input type="text" id="newTask" ng-model="gCtrl.taskInput" placeholder="Add a task" autocomplete="off">
+              <span type="submit" id="addTask">Add</span>
+          </form>
+
 
 
           <div class="tasks-box">
             <ol class="tasks-list list-unstyled">
+<!--
+              <li class="task">
+                  <div class="first-line">
+                    <div class="task-content">
+                    <div class="tick-box">
+                      <img class="icon-checked" src="images/icon-checked.png">
+                    </div>
+                      <div class="task-title">
+                        <input id="task-title" type="text" value="${input.val()}">
+                      </div>
+                    </div>
+                    <div class="task-ctrl">
+                      <img class="icon-hamburger" src="images/icon-hamburger.png">
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </div>
+                  <div class="meta">
+                    <p id="date">Created on ${time}</p>
+                  </div>
+              </li>
+-->
+
+              <li class="task" ng-repeat="task in gCtrl.tasks">
+                <div class="first-line">
+                  <div class="task-content">
+                  <div class="tick-box">
+                    <img ng-model="task.done" class="icon-checked" src="images/icon-checked.png">
+                  </div>
+                    <div class="task-title">
+
+                        {{task.name}}
+
+                    </div>
+                  </div>
+                  <div class="task-ctrl">
+                    <i class="fa fa-trash-o" ng-click="gCtrl.removeTask(task)"></i>
+                  </div>
+                </div>
+                <div class="meta">
+                  <p id="date">Created on {{task.createdOn | date:"MMM d, HH:mm"}}</p>
+                </div>
+
+              </li>
+
+
+
 
             </ol>
           </div>
