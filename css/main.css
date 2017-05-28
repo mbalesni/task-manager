@@ -118,7 +118,6 @@ padding: 5px 5px 0px;
 }
 .user-toolbar .user-name {
   font-size: 1.2em;
-  font-family: sans-serif;
 }
 .nameIcon {
   display: flex;
@@ -437,7 +436,6 @@ padding: 5px 5px 0px;
 
     #date {
       font-size: 0.5em;
-      font-family: sans-serif;
       padding-left: 35px;
     }
     .task-ctrl {
